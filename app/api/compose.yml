@@ -1,0 +1,18 @@
+services:
+    db:
+        image: postgres:16
+        container_name: citron
+        environment:
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set in .env}
+            POSTGRES_DB: citron
+        ports:
+            - '5432:5432'
+        volumes:
+            - citron-pgdata:/var/lib/postgresql/data
+        healthcheck:
+            test: [ 'CMD-SHELL', 'pg_isready -U postgres' ]
+            interval: 3s
+            retries: 10
+
+volumes:
+    citron-pgdata:

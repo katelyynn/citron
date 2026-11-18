@@ -1,7 +1,12 @@
+import 'dotenv/config';
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
+import { dbMiddleware } from './middleware/db.ts'
+import users from './routes/user.ts';
 
 const app = new Hono()
+	.use('*', dbMiddleware)
+	.route('/user', users);
 
 app.get('/', (c) => {
 	return c.text('Hello Hono!')
