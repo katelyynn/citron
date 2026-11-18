@@ -6,7 +6,13 @@ export const users = pgTable('users', {
 	name: text('username').notNull().unique(),
 	email: text('email').notNull().unique(),
 	password: text('password').notNull(),
-	created: timestamp('created').notNull().defaultNow()
+	created: timestamp('created').notNull().defaultNow(),
+
+	about: text('about'),
+	avatar: text('avatar'),
+
+	personalPronoun: text('personalPronoun').default('they'),
+	possessivePronoun: text('possessivePronoun').default('them')
 });
 
 export const artists = pgTable('artists', {
@@ -31,6 +37,28 @@ export const songs = pgTable('songs', {
 	created: timestamp('created').notNull().defaultNow(),
 	duration: integer('duration'),
 	index: integer('index'),
+});
+
+export const listens = pgTable('listens', {
+	id: serial().primaryKey(),
+	user: text('user').references(() => users.id),
+	song: text('song').references(() => songs.id),
+	created: timestamp('created').notNull().defaultNow(),
+
+	// i think listens shld be able to store their own duration
+	// that can be used in the future for other things maybe
+	duration: integer('duration'),
+
+	// used for matching?
+	rawName: text('rawName'),
+	rawArtist: text('rawArtist'),
+	rawAlbum: text('rawAlbum'),
+	rawAlbumArtist: text('rawAlbumArtist'),
+	submitter: text('submitter'), // service e.g. spotify, random app name
+	spotifyId: text('spotifyId'),
+	appleMusicId: text('appleMusicId'),
+	mbid: text('mbid'),
+	isrc: text('isrc')
 });
 
 // TODO: these need to support having multiple artists
