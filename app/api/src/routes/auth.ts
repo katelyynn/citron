@@ -85,10 +85,10 @@ authRoute.post('/login', async (c) => {
 
 		const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 		const token = await new SignJWT({
-				id: user[0].id,
-				name: user[0].name,
-				email: user[0].email
-			})
+			id: user[0].id,
+			name: user[0].name,
+			email: user[0].email
+		})
 			.setProtectedHeader({ alg: 'HS256' })
 			.setExpirationTime('7d')
 			.sign(secret);
@@ -110,6 +110,33 @@ authRoute.post('/login', async (c) => {
 		});
 	} catch (e) {
 		return c.json({ error: (e as Error).message }, 500);
+	}
+});
+
+authRoute.get('/me', async (c) => {
+	try {
+		const id = await getAuthUser(c);
+		if (!id) return c.json({ user: null }, 200);
+
+		const user = await c.get('db').select({
+			id: users.id,
+			name: users.name,
+			avatar: users.avatar,
+			about: users.about,
+			created: users.created,
+			pronouns: {
+				personal: users.personalPronoun,
+				possessive: users.possessivePronoun
+			}
+		}).from(users).where(eq(users.id, id)).limit(1);
+
+		if (user.length == 0) {
+			return c.json({ user: null }, 200);
+		}
+
+		return c.json({ user: user[0] });
+	} catch (error) {
+		return c.json({ user: null }, 200);
 	}
 });
 
