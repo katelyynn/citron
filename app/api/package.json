@@ -10,7 +10,8 @@
 		"db:studio": "npx drizzle-kit studio",
 		"docker:up": "docker compose up -d --wait",
 		"docker:down": "docker compose down",
-		"db:reset": "docker compose down -v && docker compose up -d --wait && npx drizzle-kit migrate"
+		"db:reset": "docker compose down -v && docker compose up -d --wait && npx drizzle-kit migrate",
+		"db": "npx drizzle-kit generate && docker compose up -d --wait && npx drizzle-kit migrate"
 	},
 	"dependencies": {
 		"@hono/node-server": "^2.1.3",
