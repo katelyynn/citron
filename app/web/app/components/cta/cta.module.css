@@ -16,6 +16,7 @@
 	font-weight: var(--font-weight-m);
 
 	user-select: none;
+	-webkit-user-drag: none;
 
 	--icon-size: 12px;
 	--gap: 2px;

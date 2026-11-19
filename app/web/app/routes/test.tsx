@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { CheckIcon, MinusIcon, PlusIcon, XIcon } from "~/components/icon/icon";
 import Cta from "~/components/cta/cta";
 import { ContentMain, Page } from "~/components/page/page";
+import { Avatar } from "~/components/avatar/avatar";
 
 export function meta({ }: Route.MetaArgs) {
 	return [
@@ -86,6 +87,24 @@ export default function Test() {
 								<Cta target='_blank' loading>
 									See more
 								</Cta>
+							</DemoItem>
+						</DemoGrid>
+					</section>
+					<section>
+						<DemoGrid>
+							<DemoItem label='Avatar'>
+								<Avatar size='xs' />
+								<Avatar size='s' />
+								<Avatar size='m' />
+								<Avatar size='l' />
+								<Avatar size='xl' />
+							</DemoItem>
+							<DemoItem label='Avatar'>
+								<Avatar src='https://github.com/katelyynn.png' size='xs' />
+								<Avatar src='https://github.com/katelyynn.png' size='s' />
+								<Avatar src='https://github.com/katelyynn.png' size='m' />
+								<Avatar src='https://github.com/katelyynn.png' size='l' />
+								<Avatar src='https://github.com/katelyynn.png' size='xl' />
 							</DemoItem>
 						</DemoGrid>
 					</section>

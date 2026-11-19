@@ -1,0 +1,53 @@
+.avatar {
+	width: var(--w);
+	height: var(--w);
+
+	border-radius: 50%;
+
+	background-color: oklch(var(--b5));
+}
+
+.inner {
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+
+	user-select: none;
+	-webkit-user-drag: none;
+}
+
+.placeholder {
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	color: oklch(var(--c3));
+}
+
+.size-xs {
+	--w: 24px;
+	--icon-size: 14px;
+}
+
+.size-s {
+	--w: 32px;
+	--icon-size: 18px;
+}
+
+.size-m {
+	--w: 52px;
+	--icon-size: 28px;
+}
+
+.size-l {
+	--w: 84px;
+	--icon-size: 48px;
+}
+
+.size-xl {
+	--w: var(--content-aside);
+	--icon-size: 160px;
+}
