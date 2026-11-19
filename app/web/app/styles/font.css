@@ -23,3 +23,8 @@ h6,
 label {
 	cursor: default;
 }
+
+a {
+	color: oklch(var(--l3-c));
+	text-decoration: none;
+}

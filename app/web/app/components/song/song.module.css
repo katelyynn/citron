@@ -1,0 +1,84 @@
+.song {
+	--b: transparent;
+	--bh: oklch(var(--b5) / 40%);
+
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	background-color: var(--b);
+	border-radius: var(--track-radius);
+	padding: var(--verts) var(--sides);
+
+	--verts: 5px;
+	--sides: 12px;
+
+	margin: 0 calc(-1 * var(--sides));
+
+	min-height: 40px;
+
+	&:hover {
+		background-color: var(--bh);
+	}
+}
+
+.content {
+	display: flex;
+	flex-direction: column
+}
+
+.name {
+	color: oklch(var(--c2));
+	--line-colour: transparent;
+
+	&:hover {
+		color: oklch(var(--l3-c));
+	}
+}
+
+.artist {
+	color: oklch(var(--c2) / 80%);
+	--line-colour: transparent;
+
+	&:hover {
+		color: oklch(var(--l3-c));
+	}
+}
+
+.index {
+	width: 16px;
+	color: oklch(var(--c3));
+	font-weight: var(--font-weight-m);
+	cursor: default;
+}
+
+.art {
+	display: flex;
+}
+
+.image {
+	--w: 36px;
+
+	width: var(--w);
+	height: var(--w);
+	border-radius: var(--radius-s);
+	background-color: oklch(var(--b5));
+}
+
+.placeholder {
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	color: oklch(var(--c3));
+	--icon-size: 24px;
+}
+
+.imageInner {
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+}
