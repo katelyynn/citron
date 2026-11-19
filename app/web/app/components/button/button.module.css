@@ -50,6 +50,8 @@
 	}
 
 	--icon-size: 16px;
+
+	user-select: none;
 }
 
 .primary {

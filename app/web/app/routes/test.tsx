@@ -2,6 +2,7 @@ import Button from "~/components/button/button";
 import type { Route } from "./+types/test";
 import type { ReactNode } from "react";
 import { CheckIcon, MinusIcon, PlusIcon, XIcon } from "~/components/icon/icon";
+import Cta from "~/components/cta/cta";
 
 export function meta({ }: Route.MetaArgs) {
 	return [
@@ -53,6 +54,17 @@ export default function Page() {
 						<Button primary href='#'>
 							Link
 						</Button>
+					</DemoItem>
+					<DemoItem label='Cta'>
+						<Cta>
+							See more
+						</Cta>
+						<Cta placement='left'>
+							See more
+						</Cta>
+						<Cta target='_blank'>
+							See more
+						</Cta>
 					</DemoItem>
 				</DemoGrid>
 			</section>
