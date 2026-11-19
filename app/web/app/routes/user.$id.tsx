@@ -3,7 +3,7 @@ import type { Route } from "./+types/user.$id";
 export async function loader({ params, request }: Route.LoaderArgs) {
 	const id = params.id;
 
-	const res = await fetch(new URL(`/user/${id}`, request.url));
+	const res = await fetch(new URL(`/api/user/${id}`, request.url));
 
 	if (!res.ok) {
 		throw new Response('user not found', { status: 404 });

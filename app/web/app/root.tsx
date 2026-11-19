@@ -10,6 +10,7 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import { Footer } from "./components/footer/footer";
+import { ContentMain, Page } from "./components/page/page";
 
 export const links: Route.LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -64,14 +65,18 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 	}
 
 	return (
-		<main className="pt-16 p-4 container mx-auto">
-			<h1>{message}</h1>
-			<p>{details}</p>
-			{stack && (
-				<pre className="w-full p-4 overflow-x-auto">
-					<code>{stack}</code>
-				</pre>
-			)}
-		</main>
+		<Page>
+			<ContentMain>
+				<section>
+					<h1>{message}</h1>
+					<p>{details}</p>
+					{stack && (
+						<pre>
+							<code>{stack}</code>
+						</pre>
+					)}
+				</section>
+			</ContentMain>
+		</Page>
 	);
 }
