@@ -1,0 +1,90 @@
+@import './theme/dark.css';
+
+body {
+	--def-hue: 89;
+	--def-sat: 1.26;
+	--def-lit: 0.96;
+
+	--sat-multiply: 0.18;
+	--lit-multiply: 1.25;
+
+	--trans: 0.15s;
+	--trans-long: 0.3s;
+	--trans-function: cubic-bezier(0.59, 0.01, 0.1, 1);
+	--trans-function-ani: cubic-bezier(0.205, 0.060, 0.050, 0.965);
+
+	--button-sides: 9px;
+	--button-verts: 5px;
+	--button-height: 28px;
+	--button-radius: 9px;
+	--input-radius: 8px;
+	--track-radius: var(--radius-s);
+
+	--default-icon-size: 18px;
+
+	--menu-item-verts: 5px;
+	--menu-item-sides: 6px;
+	--menu-item-height: 28px;
+	--menu-item-radius: 6px;
+	--menu-radius: calc(var(--menu-item-radius) + 4px);
+
+	--radius-xs: 4px;
+	--radius-s: 6px;
+	--radius-m: 10px;
+	--radius-l: 13px;
+	--radius-xl: 20px;
+
+	--highlight-shadow: oklch(var(--b3) / 0.25) 0 0 2px 1px;
+	--menu-shadow: 0 5px 15px 11px oklch(0 0 0 / 0.4);
+	--overlay-shadow: 0 20px 40px 20px oklch(0 0 0 / 0.4);
+	--menu-overlay-shadow: 0 -250px 10px 100px oklch(var(--b6) / 70%);
+	--avatar-shadow: 0 6px 15px 10px oklch(0 0 0 / 0.05);
+	--standout-shadow: 0 6px 20px 7px oklch(0 0 0 / 0.2);
+	--subtle-shadow: 0 6px 20px 2px oklch(0 0 0 / 0.2);
+
+	--card-padding: 20px;
+	--card-padding-v: 40px;
+	--card-radius: 8px;
+	--card-gap: 15px;
+}
+
+body,
+.colourful {
+	--hue: var(--hue-over, var(--hue-page, var(--hue-user, var(--hue-season, var(--def-hue)))));
+	--sat-raw: var(--sat-over, var(--sat-page, var(--sat-user, var(--sat-season, var(--def-sat)))));
+	--lit-raw: var(--lit-over, var(--lit-page, var(--lit-user, var(--lit-season, var(--def-lit)))));
+
+	--sat: clamp(min(var(--min-s)), calc(var(--sat-raw) * var(--sat-multiply)), max(var(--max-s)));
+	--lit: clamp(min(var(--min-l)), calc(var(--lit-raw) * var(--lit-multiply)), max(var(--max-l)));
+
+	--c1: var(--c1-o, var(--c1-l) 0 var(--hue));
+	--c2: var(--c2-o, var(--c2-l) calc(clamp(min(0), var(--sat), max(1)) * var(--c2-s)) var(--hue));
+	--c3: var(--c3-o, var(--c3-l) calc(clamp(min(0), var(--sat), max(1)) * var(--c2-s)) var(--hue));
+	--ov-c1: var(--c1);
+
+	--l2: calc(var(--lit) * var(--l2-l)) calc(var(--sat) * var(--l2-s)) var(--hue);
+	--l3: calc(var(--lit) * var(--l3-l)) calc(var(--sat) * var(--l3-s)) var(--hue);
+	--l4: calc(var(--lit) * var(--l4-l)) calc(var(--sat) * var(--l4-s)) var(--hue);
+
+	--l2-c: calc(var(--lit) * var(--l2c-l)) calc(clamp(min(var(--min-s)), var(--sat), max(var(--max-s))) * var(--l2c-s)) var(--hue);
+	--l3-c: var(--l3-c-lit) var(--l3-c-sat) var(--hue);
+	--l4-c: calc(var(--lit) * var(--l4c-l)) calc(var(--sat) * var(--l4c-s)) var(--hue);
+
+	--l3-c-sat: calc(var(--sat) * var(--l3c-s));
+	--l3-c-lit: calc(var(--lit) * var(--l3c-l));
+
+	--h2: calc(var(--lit) * var(--h2-l)) calc(var(--sat) * var(--h2-s)) var(--hue);
+	--h3: var(--h3-lit) var(--h3-sat) var(--hue);
+	--h3-sat: calc(var(--sat) * var(--h3-s));
+	--h3-lit: calc(var(--lit) * var(--h3-l));
+	--h4: calc(var(--lit) * var(--h4-l)) calc(var(--sat) * var(--h4-s)) var(--hue);
+
+	--f4: calc(var(--lit) * var(--f4-l)) calc(var(--sat) * var(--f4-s)) var(--hue);
+	--f5: calc(var(--lit) * var(--f5-l)) calc(var(--sat) * var(--f5-s)) var(--hue);
+	--k4: calc(var(--lit) * var(--k4-l)) calc(var(--sat) * var(--k4-s)) var(--hue);
+	--x4: calc(var(--lit) * var(--x4-l)) calc(var(--sat) * var(--x4-s)) var(--hue);
+	--g4: calc(var(--lit) * var(--g4-l)) calc(var(--sat) * var(--g4-s)) var(--hue);
+
+	--s3: calc(var(--lit) * var(--s3-l)) calc(var(--sat) * var(--s3-s)) var(--hue);
+	--s4: calc(var(--lit) * var(--s4-l)) calc(var(--sat) * var(--s4-s)) var(--hue);
+}

@@ -1,1 +1,12 @@
+@import './styles/themes.css';
+@import './styles/font.css';
 
+body {
+	background-color: oklch(var(--b6));
+	color: oklch(var(--c2));
+
+	font-family: var(--font);
+	font-size: var(--font-size);
+	line-height: var(--line-height);
+	font-weight: var(--font-weight);
+}

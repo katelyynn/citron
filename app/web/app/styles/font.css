@@ -1,0 +1,10 @@
+body {
+	--font: Figtree, sans-serif;
+	--font-size: 14px;
+	--line-height: 18px;
+
+	--font-weight: 400;
+	--font-weight-m: 500;
+	--font-weight-l: 600;
+	--font-weight-xl: 700;
+}
