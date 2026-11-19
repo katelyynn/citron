@@ -1,0 +1,42 @@
+.footer {
+	width: var(--page);
+	cursor: default;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.subName {
+	padding-top: 20px;
+	margin-top: 20px;
+	border-top: 1px solid var(--separator-base);
+}
+
+.citron {
+	color: oklch(var(--c3));
+	text-decoration: none;
+
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: var(--font-weight-l);
+
+	transition-property: color;
+	transition-duration: var(--trans);
+	transition-timing-function: var(--trans-function);
+
+	&:hover {
+		color: oklch(var(--l3-c));
+	}
+}
+
+.sub {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.copyright {
+	color: oklch(var(--c3));
+	font-size: var(--font-size-sm);
+	line-height: var(--line-height-sm);
+}

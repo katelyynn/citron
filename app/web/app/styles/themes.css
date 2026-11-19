@@ -46,6 +46,11 @@ body {
 	--card-padding-v: 40px;
 	--card-radius: 8px;
 	--card-gap: 15px;
+
+	--page: calc(var(--content-main) + var(--content-gap) + var(--content-aside));
+	--content-main: 900px;
+	--content-aside: 300px;
+	--content-gap: 40px;
 }
 
 body,

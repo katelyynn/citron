@@ -1,9 +1,20 @@
 .page {
 	display: flex;
 	margin: 40px 0;
+	gap: var(--content-gap);
+	width: var(--page);
 }
 
 .main {
 	display: flex;
 	flex-direction: column;
+
+	width: var(--content-main);
+}
+
+.aside {
+	display: flex;
+	flex-direction: column;
+
+	width: var(--content-aside);
 }
