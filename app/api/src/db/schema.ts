@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm";
-import { integer, pgTable, serial, text, timestamp, uuid, type AnyPgColumn } from "drizzle-orm/pg-core";
+import { integer, pgTable, text, timestamp, uuid, type AnyPgColumn } from "drizzle-orm/pg-core";
 
 export const users = pgTable('users', {
 	id: uuid('id').primaryKey().defaultRandom(),
@@ -24,7 +24,7 @@ export const artists = pgTable('artists', {
 export const albums = pgTable('albums', {
 	id: uuid('id').primaryKey().defaultRandom(),
 	name: text('name').notNull(),
-	artist: text('artist').notNull().references(() => artists.id),
+	artist: uuid('artist').notNull().references(() => artists.id),
 	created: timestamp('created').notNull().defaultNow(),
 	released: timestamp('released').notNull()
 });
@@ -32,8 +32,8 @@ export const albums = pgTable('albums', {
 export const songs = pgTable('songs', {
 	id: uuid('id').primaryKey().defaultRandom(),
 	name: text('name').notNull(),
-	artist: text('artist').notNull().references(() => artists.id),
-	album: text('album').references(() => albums.id),
+	artist: uuid('artist').notNull().references(() => artists.id),
+	album: uuid('album').references(() => albums.id),
 	created: timestamp('created').notNull().defaultNow(),
 	duration: integer('duration'),
 	index: integer('index'),
@@ -41,8 +41,8 @@ export const songs = pgTable('songs', {
 
 export const listens = pgTable('listens', {
 	id: uuid('id').primaryKey().defaultRandom(),
-	user: text('user').references(() => users.id),
-	song: text('song').references(() => songs.id),
+	user: uuid('user').references(() => users.id),
+	song: uuid('song').references(() => songs.id),
 	created: timestamp('created').notNull().defaultNow(),
 
 	// i think listens shld be able to store their own duration
@@ -83,13 +83,13 @@ export const songRelations = relations(songs, ({ one }) => ({
 
 export const comments = pgTable('comments', {
 	id: uuid('id').primaryKey().defaultRandom(),
-	user: text('user').notNull().references(() => users.id),
+	user: uuid('user').notNull().references(() => users.id),
 	parent: uuid('parent').references((): AnyPgColumn => comments.id),
 	content: text('content').notNull(),
 
 	// targetType makes this js easier
 	targetType: text('targetType').notNull(),
-	targetId: text('targetId').notNull(),
+	targetId: uuid('targetId').notNull(),
 
 	created: timestamp('created').notNull().defaultNow()
 });
@@ -97,10 +97,10 @@ export const comments = pgTable('comments', {
 // TODO: look over this again soon
 export const wall = pgTable('wall', {
 	id: uuid('id').primaryKey().defaultRandom(),
-	user: text('user').notNull().references(() => users.id),
+	user: uuid('user').notNull().references(() => users.id),
 
 	targetType: text('targetType').notNull(),
-	targetId: text('targetId').notNull(),
+	targetId: uuid('targetId').notNull(),
 
 	metadata: text('metadata'),
 	created: timestamp('created').notNull().defaultNow(),
