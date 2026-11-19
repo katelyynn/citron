@@ -1,8 +1,8 @@
 import { relations } from "drizzle-orm";
-import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import { integer, pgTable, serial, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 export const users = pgTable('users', {
-	id: serial().primaryKey(),
+	id: uuid('id').primaryKey().defaultRandom(),
 	name: text('username').notNull().unique(),
 	email: text('email').notNull().unique(),
 	password: text('password').notNull(),
@@ -16,13 +16,13 @@ export const users = pgTable('users', {
 });
 
 export const artists = pgTable('artists', {
-	id: serial().primaryKey(),
+	id: uuid('id').primaryKey().defaultRandom(),
 	name: text('name').notNull(),
 	created: timestamp('created').notNull().defaultNow()
 });
 
 export const albums = pgTable('albums', {
-	id: serial().primaryKey(),
+	id: uuid('id').primaryKey().defaultRandom(),
 	name: text('name').notNull(),
 	artist: text('artist').notNull().references(() => artists.id),
 	created: timestamp('created').notNull().defaultNow(),
@@ -30,7 +30,7 @@ export const albums = pgTable('albums', {
 });
 
 export const songs = pgTable('songs', {
-	id: serial().primaryKey(),
+	id: uuid('id').primaryKey().defaultRandom(),
 	name: text('name').notNull(),
 	artist: text('artist').notNull().references(() => artists.id),
 	album: text('album').references(() => albums.id),
@@ -40,7 +40,7 @@ export const songs = pgTable('songs', {
 });
 
 export const listens = pgTable('listens', {
-	id: serial().primaryKey(),
+	id: uuid('id').primaryKey().defaultRandom(),
 	user: text('user').references(() => users.id),
 	song: text('song').references(() => songs.id),
 	created: timestamp('created').notNull().defaultNow(),
@@ -78,3 +78,9 @@ export const songRelations = relations(songs, ({ one }) => ({
 	artist: one(artists, { fields: [songs.artist], references: [artists.id] }),
 	album: one(albums, { fields: [songs.album], references: [albums.id] })
 }));
+
+//
+
+export const comments = pgTable('comments', {
+	id: uuid('id').primaryKey().defaultRandom(),
+});
