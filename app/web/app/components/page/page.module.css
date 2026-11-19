@@ -8,6 +8,7 @@
 .main {
 	display: flex;
 	flex-direction: column;
+	gap: var(--page-gap);
 
 	width: var(--content-main);
 }
@@ -15,6 +16,7 @@
 .aside {
 	display: flex;
 	flex-direction: column;
+	gap: var(--page-gap);
 
 	width: var(--content-aside);
 }

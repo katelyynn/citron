@@ -51,6 +51,7 @@ body {
 	--content-main: 900px;
 	--content-aside: 300px;
 	--content-gap: 40px;
+	--page-gap: 20px;
 }
 
 body,
