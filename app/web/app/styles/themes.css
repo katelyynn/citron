@@ -52,6 +52,9 @@ body {
 	--content-aside: 300px;
 	--content-gap: 40px;
 	--page-gap: 20px;
+
+	color-scheme: dark;
+	accent-color: oklch(var(--h3));
 }
 
 body,
