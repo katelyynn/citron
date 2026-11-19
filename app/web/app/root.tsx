@@ -11,6 +11,7 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import { Footer } from "./components/footer/footer";
 import { ContentMain, Page } from "./components/page/page";
+import { AuthProvider } from "./components/auth/provider";
 
 export const links: Route.LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -44,8 +45,32 @@ export function Layout({ children }: { children: React.ReactNode }) {
 	);
 }
 
-export default function App() {
-	return <Outlet />;
+export async function loader({ request }: Route.LoaderArgs) {
+	const res = await fetch(new URL(`/api/auth/me`, request.url), {
+		headers: {
+			cookie: request.headers.get('citron') || ''
+		},
+	});
+
+	if (!res.ok) {
+		return {
+			user: null
+		}
+	}
+
+	const data = await res.json();
+
+	return {
+		user: data.user ?? null
+	}
+}
+
+export default function App({ loaderData }: Route.ComponentProps) {
+	return (
+		<AuthProvider initial={loaderData.user}>
+			<Outlet />
+		</AuthProvider>
+	);
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
