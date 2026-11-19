@@ -25,12 +25,20 @@
 
 	cursor: pointer;
 
+	transition-property: background, scale;
+	transition-duration: var(--trans);
+	transition-timing-function: var(--trans-function);
+
 	&:hover {
 		background: var(--bh);
+
+		transition-property: scale;
 	}
 
 	&:active {
 		background: var(--ba);
+
+		scale: 0.98;
 	}
 
 	&[disabled] {
