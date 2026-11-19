@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm";
-import { integer, pgTable, serial, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { integer, pgTable, serial, text, timestamp, uuid, type AnyPgColumn } from "drizzle-orm/pg-core";
 
 export const users = pgTable('users', {
 	id: uuid('id').primaryKey().defaultRandom(),
@@ -83,4 +83,12 @@ export const songRelations = relations(songs, ({ one }) => ({
 
 export const comments = pgTable('comments', {
 	id: uuid('id').primaryKey().defaultRandom(),
+	user: text('user').notNull().references(() => users.id),
+	parent: uuid('parent').references((): AnyPgColumn => comments.id),
+	content: text('content').notNull(),
+
+	targetType: text('targetType').notNull(),
+	targetId: text('targetId').notNull(),
+
+	created: timestamp('created').notNull().defaultNow()
 });
