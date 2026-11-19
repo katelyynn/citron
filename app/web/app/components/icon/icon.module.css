@@ -21,8 +21,12 @@ path {
 	}
 }
 
+
 .check,
-.x,
+.x {
+	--icon-size: 12px;
+}
+
 .plus,
 .minus {
 	--icon-size: 14px;

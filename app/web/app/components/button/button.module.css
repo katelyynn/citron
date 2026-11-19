@@ -3,6 +3,8 @@
 	font: inherit;
 	border: unset;
 
+	text-decoration: none;
+
 	padding: var(--button-verts) var(--button-sides);
 	border-radius: var(--button-radius);
 

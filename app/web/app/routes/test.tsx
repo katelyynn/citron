@@ -1,6 +1,7 @@
 import Button from "~/components/button/button";
 import type { Route } from "./+types/test";
 import type { ReactNode } from "react";
+import { CheckIcon, MinusIcon, PlusIcon, XIcon } from "~/components/icon/icon";
 
 export function meta({ }: Route.MetaArgs) {
 	return [
@@ -32,6 +33,25 @@ export default function Page() {
 						</Button>
 						<Button primary loading>
 							Button
+						</Button>
+						<Button primary>
+							<CheckIcon />
+							Save
+						</Button>
+						<Button primary>
+							<XIcon />
+							Delete
+						</Button>
+						<Button primary>
+							<PlusIcon />
+							Add
+						</Button>
+						<Button primary>
+							<MinusIcon />
+							Minus
+						</Button>
+						<Button primary href='#'>
+							Link
 						</Button>
 					</DemoItem>
 				</DemoGrid>
