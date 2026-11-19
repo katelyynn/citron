@@ -87,8 +87,23 @@ export const comments = pgTable('comments', {
 	parent: uuid('parent').references((): AnyPgColumn => comments.id),
 	content: text('content').notNull(),
 
+	// targetType makes this js easier
 	targetType: text('targetType').notNull(),
 	targetId: text('targetId').notNull(),
 
 	created: timestamp('created').notNull().defaultNow()
+});
+
+// TODO: look over this again soon
+export const wall = pgTable('wall', {
+	id: uuid('id').primaryKey().defaultRandom(),
+	user: text('user').notNull().references(() => users.id),
+
+	targetType: text('targetType').notNull(),
+	targetId: text('targetId').notNull(),
+
+	metadata: text('metadata'),
+	created: timestamp('created').notNull().defaultNow(),
+	count: integer('count').notNull().default(1),
+	artists: uuid('artists').array().notNull().default([])
 });
