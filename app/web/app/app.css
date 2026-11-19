@@ -1,3 +1,5 @@
+@import './styles/reset.css';
+
 @import './styles/themes.css';
 @import './styles/font.css';
 
@@ -9,4 +11,24 @@ body {
 	font-size: var(--font-size);
 	line-height: var(--line-height);
 	font-weight: var(--font-weight);
+
+	-webkit-font-smoothing: antialiased;
+}
+
+.demo-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+	gap: 20px;
+}
+
+.demo-item-wrap {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.demo-item {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
 }
