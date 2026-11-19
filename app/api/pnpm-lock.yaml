@@ -23,6 +23,9 @@ importers:
       hono:
         specifier: ^4.13.16
         version: 4.13.19
+      jose:
+        specifier: ^6.2.17
+        version: 6.2.17
       postgres:
         specifier: ^4.1.1
         version: 4.1.1
@@ -764,6 +767,9 @@ packages:
     resolution: {integrity: sha512-KmXvQAXwcAHV+muzbIwoJ23niEB5nMoDVr9WcRkU8mvjUECm/1+7v4Jgp7P7a+H6MLFrh+vXrGonGrGS+RQfkA==}
     engines: {node: '>=16.9.0'}
 
+  jose@6.2.17:
+    resolution: {integrity: sha512-wOuK9V1yujQFH5S0ZWmLcDZN7+IKh9bUCC2ZPCf2HDlol3WWHy+PPyNjEI75FXRLMp3vDKQcupP59xhVU95hcg==}
+
   postgres@4.1.1:
     resolution: {integrity: sha512-1kJDojqNZC+iTHHXh6eif0J98LUtyLAePe/qkW1GK35eh2JixlsAiIKq3FGI+xqI+SUGTNodzf7TScVeIIyUug==}
     engines: {node: '>=18'}
@@ -1203,6 +1209,8 @@ snapshots:
       resolve-pkg-maps: 1.0.0
 
   hono@4.13.19: {}
+
+  jose@6.2.17: {}
 
   postgres@4.1.1: {}
 

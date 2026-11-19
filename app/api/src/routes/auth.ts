@@ -3,6 +3,8 @@ import { type Env } from "../middleware/db.ts";
 import { users } from "../db/schema.ts";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
+import { jwtVerify, SignJWT } from "jose";
+import { getCookie, setCookie } from "hono/cookie";
 
 const authRoute = new Hono<Env>();
 
@@ -50,6 +52,80 @@ authRoute.post('/register', async (c) => {
 
 		return c.json({ message: 'created user' }, 201);
 	} catch (e) {
-		return c.json({ error: e.message }, 500);
+		return c.json({ error: (e as Error).message }, 500);
 	}
 });
+
+authRoute.post('/login', async (c) => {
+	try {
+		const { email, password } = await c.req.json();
+
+		if (!email || !password) {
+			return c.json({ error: 'missing required fields: email, password' }, 400);
+		}
+
+		// by keeping this as a const it eliminates the possibility
+		// of someone getting extra info out of logging in errors
+		const credentialError = c.json({ error: 'invalid credentials' }, 401);
+
+		const user = await c.get('db')
+			.select()
+			.from(users)
+			.where(eq(users.email, email))
+			.limit(1);
+
+		if (user.length == 0) {
+			return credentialError;
+		}
+
+		const valid = await bcrypt.compare(password, user[0].password);
+		if (!valid) {
+			return credentialError;
+		}
+
+		const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+		const token = await new SignJWT({
+				id: user[0].id,
+				name: user[0].name,
+				email: user[0].email
+			})
+			.setProtectedHeader({ alg: 'HS256' })
+			.setExpirationTime('7d')
+			.sign(secret);
+
+		setCookie(c, 'citron', token, {
+			path: '/',
+			httpOnly: true,
+			secure: false,
+			sameSite: 'lax',
+			maxAge: 60 * 60 * 24 * 7
+		});
+
+		return c.json({
+			message: 'logged in!',
+			user: {
+				id: user[0].id,
+				name: user[0].name
+			}
+		});
+	} catch (e) {
+		return c.json({ error: (e as Error).message }, 500);
+	}
+});
+
+export async function getAuthUser(c: any): Promise<string | null> {
+	const token = getCookie(c, 'citron');
+	if (!token) return null;
+
+	try {
+		const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+		const { payload } = await jwtVerify(token, secret);
+
+		const userId = payload.id as string;
+		if (!userId) return null;
+
+		return userId;
+	} catch {
+		return null;
+	}
+}
