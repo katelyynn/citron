@@ -1,5 +1,5 @@
 import Button from "~/components/button/button";
-import type { Route } from "./+types/home";
+import type { Route } from "./+types/test";
 
 export function meta({ }: Route.MetaArgs) {
 	return [

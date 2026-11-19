@@ -1,11 +1,11 @@
-import { LoadingRegular } from "@mingcute/react/core-regular";
 import { forwardRef, type ReactNode } from "react";
 import styles from './button.module.css';
+import { SpinnerIcon } from "../icon/icon";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	loading?: boolean;
 	disabled?: boolean;
-	chibi?: boolean;
+	chibi?: boolean; s
 	colourful?: boolean;
 	primary?: boolean;
 	accented?: boolean;
@@ -42,7 +42,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 			}} disabled={disabled || loading} ref={ref} {...props}>
 				{!loading ? children : (
 					<>
-						<LoadingRegular />
+						<SpinnerIcon />
 						Loading
 					</>
 				)}

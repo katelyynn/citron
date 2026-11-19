@@ -2,4 +2,51 @@
 	appearance: none;
 	font: inherit;
 	border: unset;
+
+	padding: var(--button-verts) var(--button-sides);
+	border-radius: var(--button-radius);
+
+	color: oklch(var(--c2));
+
+	--b: oklch(var(--b3));
+	--bh: color-mix(in oklch, oklch(var(--b6)), oklch(var(--b3)) 90%);
+	--ba: color-mix(in oklch, oklch(var(--b6)), oklch(var(--b3)) 80%);
+
+	background: var(--b);
+
+	display: flex;
+	align-items: center;
+	gap: 4px;
+
+	min-width: var(--button-width);
+	min-height: var(--button-height);
+
+	cursor: pointer;
+
+	&:hover {
+		background: var(--bh);
+	}
+
+	&:active {
+		background: var(--ba);
+	}
+
+	&[disabled] {
+		--bh: var(--b) !important;
+		--ba: var(--b) !important;
+
+		cursor: unset;
+		opacity: 0.7;
+	}
+
+	--icon-size: 16px;
+}
+
+.primary {
+	--b: oklch(var(--h3));
+	--bh: color-mix(in oklch, oklch(var(--h4)), oklch(var(--h3)) 80%);
+	--ba: color-mix(in oklch, oklch(var(--h4)), oklch(var(--h3)) 60%);
+
+	color: oklch(var(--b7));
+	font-weight: var(--font-weight-m);
 }
