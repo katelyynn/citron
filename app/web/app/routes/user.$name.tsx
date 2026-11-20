@@ -1,4 +1,6 @@
+import { ContentAside, ContentMain, Page } from "~/components/page/page";
 import type { Route } from "./+types/user.$name";
+import { Avatar } from "~/components/avatar/avatar";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
 	const name = params.name;
@@ -18,8 +20,13 @@ export default function App({ loaderData }: Route.ServerComponentProps) {
 	const { user } = loaderData;
 
 	return (
-		<div>
-			<p>{user.name}</p>
-		</div>
+		<Page>
+			<ContentAside>
+				<Avatar src={user.avatar} size='xl' alt={user.name} />
+			</ContentAside>
+			<ContentMain>
+				<h1>{user.name}</h1>
+			</ContentMain>
+		</Page>
 	)
 }

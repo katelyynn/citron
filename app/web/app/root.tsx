@@ -54,7 +54,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export async function loader({ request }: Route.LoaderArgs) {
 	const res = await fetch(new URL(`/api/auth/me`, request.url), {
 		headers: {
-			cookie: request.headers.get('citron') || ''
+			cookie: request.headers.get('cookie') || ''
 		},
 	});
 
