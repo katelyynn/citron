@@ -10,7 +10,21 @@ export function Header() {
 		return <LoggedOutHeader />
 	}
 
-	return <p>wip</p>
+	return (
+		<header className={styles.header}>
+			<div className={styles.left}>
+				<a className={styles.citron} href='/'>
+					<CitronIcon />
+					citron
+				</a>
+			</div>
+			<div className={styles.right}>
+				<Button href={`/user/${user.name}`}>
+					{user.name}
+				</Button>
+			</div>
+		</header>
+	)
 }
 
 function LoggedOutHeader() {
