@@ -32,9 +32,25 @@ export function UserPage({
 			children: 'Home'
 		},
 		{
+			href: '/wall',
+			children: 'Wall'
+		},
+		{
 			href: '/library',
 			children: 'Library'
-		}
+		},
+		{
+			href: '/friends',
+			children: 'Friends'
+		},
+		{
+			href: '/comments',
+			children: 'Comments'
+		},
+		{
+			href: '/lists',
+			children: 'Lists'
+		},
 	];
 
 	const location = useLocation();
