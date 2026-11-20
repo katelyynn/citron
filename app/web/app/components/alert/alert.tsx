@@ -13,17 +13,17 @@ export function Alert({
 	type = 'general',
 	children
 }: AlertProps) {
-	let icon = <Icon name={InformationRegular} />;
+	let icon = <Icon className={styles.icon} name={InformationRegular} />;
 
 	switch (type) {
 		case 'warning':
-			icon = <Icon name={AlertFilled} />;
+			icon = <Icon className={styles.icon} name={AlertFilled} />;
 			break;
 		case 'error':
-			icon = <Icon name={CloseCircleFilled} />;
+			icon = <Icon className={styles.icon} name={CloseCircleFilled} />;
 			break;
 		case 'success':
-			icon = <Icon name={CheckCircleFilled} />;
+			icon = <Icon className={styles.icon} name={CheckCircleFilled} />;
 			break;
 	}
 
