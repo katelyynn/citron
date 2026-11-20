@@ -1,0 +1,17 @@
+.head {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+
+	font-family: var(--font-citron);
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: var(--font-weight);
+
+	color: oklch(var(--c1));
+}
+
+.icon {
+	color: oklch(var(--l3-c)) !important;
+	--icon-size: 16px;
+}

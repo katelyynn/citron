@@ -4,7 +4,8 @@ import { flatRoutes } from "@react-router/fs-routes";
 export default [
 	route('user/:name', 'routes/user/layout.tsx', [
 		index('routes/user/_index.tsx'),
-		route('library', 'routes/user/library.tsx')
+		route('library', 'routes/user/library.tsx'),
+		route('wall', 'routes/user/wall.tsx')
 	]),
 
 	route('login', 'routes/auth/login.tsx'),

@@ -4,6 +4,7 @@ import { ContentAside, ContentMain, Page } from "../page/page";
 import { Avatar } from "../avatar/avatar";
 import { Tabs, type Tab } from "../tabs/tabs";
 import { useLocation } from "react-router";
+import { DateTime } from "luxon";
 
 export async function loadUser(name: string, request: Request): Promise<User> {
 	const res = await fetch(new URL(`/api/user/${name}`, request.url));
@@ -62,6 +63,7 @@ export function UserPage({
 			</ContentAside>
 			<ContentMain>
 				<h1>{user.name}</h1>
+				<p>since {DateTime.fromISO(user.created).toLocaleString(DateTime.DATETIME_MED)}</p>
 				<Tabs tabs={tabs} location={location.pathname} starting={`/user/${user.name}`} />
 				{children}
 			</ContentMain>

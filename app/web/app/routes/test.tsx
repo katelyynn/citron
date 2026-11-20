@@ -10,6 +10,8 @@ import Input from "~/components/input/input";
 import { Checkbox } from "~/components/check/check";
 import { Alert } from "~/components/alert/alert";
 import { Tabs } from "~/components/tabs/tabs";
+import { SectionHead } from "~/components/head/head";
+import { WaveHandRegular } from "@mingcute/react/core-regular";
 
 export function meta({ }: Route.MetaArgs) {
 	return [
@@ -166,6 +168,15 @@ export default function Test() {
 										children: 'World'
 									}
 								]} />
+							</DemoItem>
+						</DemoGrid>
+					</section>
+					<section>
+						<DemoGrid>
+							<DemoItem label='Head'>
+								<SectionHead icon={WaveHandRegular}>
+									Hello world
+								</SectionHead>
 							</DemoItem>
 						</DemoGrid>
 					</section>
