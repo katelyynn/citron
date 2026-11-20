@@ -21,3 +21,5 @@ export interface User {
 		possessive?: string;
 	}
 }
+
+export type UserListView = 'list';

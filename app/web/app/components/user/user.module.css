@@ -1,0 +1,29 @@
+.item {
+	position: relative;
+
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	&:hover {
+		&>.avatar {
+			outline-color: oklch(var(--l3-c) / 60%);
+		}
+	}
+}
+
+.avatar {
+	outline: 2px solid transparent;
+
+	transition-property: outline-color;
+	transition-duration: var(--trans);
+	transition-timing-function: var(--trans-function);
+}
+
+.name {
+	&:after {
+		content: '';
+		position: absolute;
+		inset: 0;
+	}
+}

@@ -13,5 +13,7 @@ export default [
 	route('terms', 'routes/legal/terms.tsx'),
 	route('privacy', 'routes/legal/privacy.tsx'),
 
+	route('community', 'routes/home/community.tsx'),
+
 	...(await flatRoutes())
 ] satisfies RouteConfig;
