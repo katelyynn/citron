@@ -8,3 +8,14 @@ theres also @citron/share for shared types & libs or whatever
 wip
 
 no ai
+
+## requirements
+
+### API
+
+.env:
+```
+POSTGRES_PASSWORD=
+DATABASE_URL=
+JWT_SECRET=
+```
