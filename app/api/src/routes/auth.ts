@@ -23,7 +23,7 @@ authRoute.post('/register', async (c) => {
 			.limit(1);
 
 		if (existingName.length > 0) {
-			return c.json({ error: 'name is already in use' });
+			return c.json({ error: 'name is already in use' }, 400);
 		}
 
 		if (password.length < 6) {
