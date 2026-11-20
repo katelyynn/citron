@@ -1,5 +1,9 @@
 .container {
 	display: flex;
+
+	position: relative;
+
+	--icon-size: 14px;
 }
 
 .input {
@@ -42,6 +46,22 @@
 	}
 
 	width: 100%;
+}
+
+.identifier {
+	position: absolute;
+	left: var(--button-sides);
+	top: 0;
+	bottom: 0;
+
+	display: flex;
+	align-items: center;
+
+	color: oklch(var(--c3));
+	pointer-events: none;
+}
+.icon {
+	padding-left: calc((var(--button-sides) * 2) + var(--icon-size));
 }
 
 /*.error {

@@ -1,9 +1,12 @@
+import { User3Filled } from "@mingcute/react/core-filled";
+import { LockRegular, MailRegular } from "@mingcute/react/core-regular";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Alert } from "~/components/alert/alert";
 import Button from "~/components/button/button";
 import Cta from "~/components/cta/cta";
 import { Form, FormFooter, FormInner } from "~/components/form/form";
+import { Icon } from "~/components/icon/icon";
 import Input from "~/components/input/input";
 import { Link } from "~/components/link/link";
 import { ContentAside, Page } from "~/components/page/page";
@@ -55,13 +58,13 @@ export default function App() {
 				)}
 				<Form>
 					<FormInner label='Name'>
-						<Input type='username' value={name} onChange={setName} />
+						<Input icon={<Icon name={User3Filled} />} type='username' value={name} onChange={setName} />
 					</FormInner>
 					<FormInner label='Email'>
-						<Input type='email' value={email} onChange={setEmail} />
+						<Input icon={<Icon name={MailRegular} />} type='email' value={email} onChange={setEmail} />
 					</FormInner>
 					<FormInner label='Password'>
-						<Input type='password' value={password} onChange={setPassword} />
+						<Input icon={<Icon name={LockRegular} />} type='password' value={password} onChange={setPassword} />
 					</FormInner>
 					<FormFooter>
 						<Button primary onClick={register}>
