@@ -24,6 +24,8 @@ export default function Test() {
 
 	const [inputError, setInputError] = useState(false);
 
+	const [checked, setChecked] = useState(false);
+
 	return (
 		<>
 			<Page>
@@ -59,7 +61,7 @@ export default function Test() {
 								<Button primary={primary} href='#'>
 									Link
 								</Button>
-								<Checkbox onClick={() => { togglePrimary(!primary) }} />
+								<Checkbox checked={primary} setChecked={togglePrimary} />
 							</DemoItem>
 							<DemoItem label='Cta'>
 								<Cta>
@@ -98,13 +100,11 @@ export default function Test() {
 								<Input type='text' error={inputError ? 'Put error text here' : undefined} />
 								<Input type='email' error={inputError ? 'Put error text here' : undefined} />
 								<Input type='password' error={inputError ? 'Put error text here' : undefined} />
-								<Checkbox onClick={() => { setInputError(!inputError) }} />
+								<Checkbox checked={inputError} setChecked={setInputError} />
 							</DemoItem>
 							<DemoItem label='Checkbox'>
-								<Checkbox />
-								<Checkbox checked />
-								<Checkbox ignoreClicks />
-								<Checkbox checked ignoreClicks />
+								<Checkbox checked={checked} setChecked={setChecked} />
+								<Checkbox checked={checked} setChecked={setChecked} disabled />
 							</DemoItem>
 						</DemoGrid>
 					</section>
@@ -116,7 +116,7 @@ export default function Test() {
 								<Avatar src={avi ? 'https://github.com/katelyynn.png' : undefined} size='m' />
 								<Avatar src={avi ? 'https://github.com/katelyynn.png' : undefined} size='l' />
 								<Avatar src={avi ? 'https://github.com/katelyynn.png' : undefined} size='xl' />
-								<Checkbox onClick={() => { showAvi(!avi) }} />
+								<Checkbox checked={avi} setChecked={showAvi} />
 							</DemoItem>
 						</DemoGrid>
 					</section>
@@ -129,8 +129,8 @@ export default function Test() {
 									<SongRow index={index ? 3 : undefined} art={art} id='0' name='is it new years yet?' artistId='0' artist='Sabrina Carpenter' />
 									<SongRow index={index ? 4 : undefined} art={art} id='0' name='is it new years yet?' artistId='0' artist='Sabrina Carpenter' />
 								</SongList>
-								<Checkbox onClick={() => { toggleArt(!art) }} />
-								<Checkbox onClick={() => { toggleIndex(!index) }} />
+								<Checkbox checked={art} setChecked={toggleArt} />
+								<Checkbox checked={index} setChecked={toggleIndex} />
 							</DemoItem>
 						</DemoGrid>
 					</section>

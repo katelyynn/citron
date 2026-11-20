@@ -5,30 +5,29 @@ import { useState } from 'react';
 
 interface CheckboxProps {
 	checked?: boolean;
+	setChecked?: (v: boolean) => void;
+	interactable?: boolean;
 	disabled?: boolean;
-	onClick?: (v: boolean) => void;
-	ignoreClicks?: boolean;
 }
 
 export function Checkbox({
 	checked = false,
+	setChecked,
+	interactable,
 	disabled,
-	onClick,
-	ignoreClicks
 }: CheckboxProps) {
-	const [value, setValue] = useState(checked);
+	if (setChecked) interactable = true;
 
 	return (
 		<div className={styles.container}>
 			<button onClick={() => {
-				if (ignoreClicks || disabled) return;
+				if (!interactable || disabled) return;
 
-				setValue(!value);
-				onClick?.(value);
+				setChecked?.(!checked);
 			}} className={[
 				styles.checkbox,
-				value && styles.checked,
-				!ignoreClicks && styles.hoverable
+				checked && styles.checked,
+				interactable && styles.hoverable
 			].join(' ')} disabled={disabled}>
 				<Icon className={styles.check} name={CheckRegular} />
 			</button>
