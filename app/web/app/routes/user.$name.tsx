@@ -1,9 +1,9 @@
-import type { Route } from "./+types/user.$id";
+import type { Route } from "./+types/user.$name";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
-	const id = params.id;
+	const name = params.name;
 
-	const res = await fetch(new URL(`/api/user/${id}`, request.url));
+	const res = await fetch(new URL(`/api/user/${name}`, request.url));
 
 	if (!res.ok) {
 		throw new Response('user not found', { status: 404 });
