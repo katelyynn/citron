@@ -12,6 +12,7 @@ import "./app.css";
 import { Footer } from "./components/footer/footer";
 import { ContentMain, Page } from "./components/page/page";
 import { AuthProvider } from "./components/auth/provider";
+import { Header } from "./components/header/header";
 
 export const links: Route.LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -37,7 +38,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				{children}
-				<Footer />
 				<ScrollRestoration />
 				<Scripts />
 			</body>
@@ -68,7 +68,9 @@ export async function loader({ request }: Route.LoaderArgs) {
 export default function App({ loaderData }: Route.ComponentProps) {
 	return (
 		<AuthProvider initial={loaderData.user}>
+			<Header />
 			<Outlet />
+			<Footer />
 		</AuthProvider>
 	);
 }

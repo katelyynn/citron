@@ -25,6 +25,7 @@ export default function Test() {
 	const [inputError, setInputError] = useState(false);
 
 	const [checked, setChecked] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	return (
 		<>
@@ -33,35 +34,33 @@ export default function Test() {
 					<section>
 						<DemoGrid>
 							<DemoItem label='Button'>
-								<Button primary={primary}>
+								<Button primary={primary} loading={loading}>
 									Button
 								</Button>
-								<Button primary={primary} disabled>
+								<Button primary={primary} disabled loading={loading}>
 									Button
 								</Button>
-								<Button primary={primary} loading>
-									Button
-								</Button>
-								<Button primary={primary}>
+								<Button primary={primary} loading={loading}>
 									<CheckIcon />
 									Save
 								</Button>
-								<Button primary={primary}>
+								<Button primary={primary} loading={loading}>
 									<XIcon />
 									Delete
 								</Button>
-								<Button primary={primary}>
+								<Button primary={primary} loading={loading}>
 									<PlusIcon />
 									Add
 								</Button>
-								<Button primary={primary}>
+								<Button primary={primary} loading={loading}>
 									<MinusIcon />
 									Minus
 								</Button>
-								<Button primary={primary} href='#'>
+								<Button primary={primary} href='#' loading={loading}>
 									Link
 								</Button>
 								<Checkbox checked={primary} setChecked={togglePrimary} />
+								<Checkbox checked={loading} setChecked={setLoading} />
 							</DemoItem>
 							<DemoItem label='Cta'>
 								<Cta>

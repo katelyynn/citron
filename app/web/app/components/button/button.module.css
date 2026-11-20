@@ -47,6 +47,7 @@
 
 		cursor: unset;
 		opacity: 0.7;
+		pointer-events: none;
 	}
 
 	--icon-size: 16px;

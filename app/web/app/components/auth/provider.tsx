@@ -1,4 +1,4 @@
-import { createContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useState, type ReactNode } from "react";
 import type { Me } from "@citron/share/user";
 
 interface AuthProviderProps {
@@ -30,4 +30,14 @@ export function AuthProvider({
 			{children}
 		</AuthContext.Provider>
 	)
+}
+
+export function useAuth() {
+	const context = useContext(AuthContext);
+
+	if (!context) {
+		throw new Error('useAuth must be used inside an AuthProvider context');
+	}
+
+	return context;
 }
