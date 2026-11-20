@@ -32,7 +32,8 @@ a {
 
 h1 {
 	color: oklch(var(--c1));
+	font-family: var(--font-citron);
 	font-size: 28px;
 	line-height: 32px;
-	font-weight: var(--font-weight-l);
+	font-weight: var(--font-weight);
 }
