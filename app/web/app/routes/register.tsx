@@ -1,6 +1,9 @@
+import { User3Filled } from "@mingcute/react/core-filled";
+import { LockRegular, MailRegular } from "@mingcute/react/core-regular";
 import Button from "~/components/button/button";
 import Cta from "~/components/cta/cta";
 import { Form, FormFooter, FormInner } from "~/components/form/form";
+import { Icon } from "~/components/icon/icon";
 import Input from "~/components/input/input";
 import { Link } from "~/components/link/link";
 import { ContentAside, Page } from "~/components/page/page";
@@ -13,13 +16,13 @@ export default function App() {
 				<p>By continuing, you agree to citron's <Link href='/terms'>Terms of Use</Link> and <Link href='/privacy'>Privacy Policy</Link>.</p>
 				<Form>
 					<FormInner label='Name'>
-						<Input type='username' />
+						<Input icon={<Icon name={User3Filled} />} type='username' />
 					</FormInner>
 					<FormInner label='Email'>
-						<Input type='email' />
+						<Input icon={<Icon name={MailRegular} />} type='email' />
 					</FormInner>
 					<FormInner label='Password'>
-						<Input type='password' />
+						<Input icon={<Icon name={LockRegular} />} type='password' />
 					</FormInner>
 					<FormFooter>
 						<Button primary>

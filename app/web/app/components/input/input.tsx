@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, type ReactElement } from "react";
 import styles from './input.module.css';
 
 type InputProps = {
@@ -10,6 +10,7 @@ type InputProps = {
 	value?: string;
 	onChange?: (v: string) => void;
 	onSubmit?: (v: string) => void;
+	icon?: ReactElement;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'ref' | 'onInput' | 'onChange'>;
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -22,11 +23,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 		value,
 		onChange,
 		onSubmit,
+		icon,
 		...props
 	}, ref) => {
 		const classes = [
 			styles.input,
 			error && styles.error,
+			icon && styles.icon,
 			'colourful',
 			className
 		].join(' ');
@@ -55,6 +58,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 					ref={ref}
 					{...props}
 				/>
+				{icon && (
+					<div className={styles.identifier}>
+						{icon}
+					</div>
+				)}
 			</div>
 		)
 	}
