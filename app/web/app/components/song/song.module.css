@@ -9,7 +9,7 @@
 	border-radius: var(--track-radius);
 	padding: var(--verts) var(--sides);
 
-	--verts: 5px;
+	--verts: 7px;
 	--sides: 12px;
 
 	margin: 0 calc(-1 * var(--sides));
@@ -18,6 +18,26 @@
 
 	&:hover {
 		background-color: var(--bh);
+	}
+
+	position: relative;
+
+	&:after {
+		content: '';
+		position: absolute;
+		left: var(--sides);
+		bottom: -1px;
+		right: var(--sides);
+		height: 1px;
+
+		display: block;
+		background: var(--separator-base);
+	}
+
+	&:last-child {
+		&:after {
+			display: none;
+		}
 	}
 }
 
@@ -81,4 +101,14 @@
 	width: 100%;
 	height: 100%;
 	border-radius: inherit;
+}
+
+.list {
+	width: 100%;
+}
+
+.body {
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
 }

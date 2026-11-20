@@ -7,6 +7,7 @@ import { ContentMain, Page } from "~/components/page/page";
 import { Avatar } from "~/components/avatar/avatar";
 import { SongList, SongRow } from "~/components/song/song";
 import Input from "~/components/input/input";
+import { Checkbox } from "~/components/check/check";
 
 export function meta({ }: Route.MetaArgs) {
 	return [
@@ -58,7 +59,7 @@ export default function Test() {
 								<Button primary={primary} href='#'>
 									Link
 								</Button>
-								<input type='checkbox' onChange={() => { togglePrimary(!primary) }} />
+								<Checkbox onClick={() => { togglePrimary(!primary) }} />
 							</DemoItem>
 							<DemoItem label='Cta'>
 								<Cta>
@@ -97,7 +98,13 @@ export default function Test() {
 								<Input type='text' error={inputError ? 'Put error text here' : undefined} />
 								<Input type='email' error={inputError ? 'Put error text here' : undefined} />
 								<Input type='password' error={inputError ? 'Put error text here' : undefined} />
-								<input type='checkbox' onChange={() => { setInputError(!inputError) }} />
+								<Checkbox onClick={() => { setInputError(!inputError) }} />
+							</DemoItem>
+							<DemoItem label='Checkbox'>
+								<Checkbox />
+								<Checkbox checked />
+								<Checkbox ignoreClicks />
+								<Checkbox checked ignoreClicks />
 							</DemoItem>
 						</DemoGrid>
 					</section>
@@ -109,7 +116,7 @@ export default function Test() {
 								<Avatar src={avi ? 'https://github.com/katelyynn.png' : undefined} size='m' />
 								<Avatar src={avi ? 'https://github.com/katelyynn.png' : undefined} size='l' />
 								<Avatar src={avi ? 'https://github.com/katelyynn.png' : undefined} size='xl' />
-								<input type='checkbox' onChange={() => { showAvi(!avi) }} />
+								<Checkbox onClick={() => { showAvi(!avi) }} />
 							</DemoItem>
 						</DemoGrid>
 					</section>
@@ -122,8 +129,8 @@ export default function Test() {
 									<SongRow index={index ? 3 : undefined} art={art} id='0' name='is it new years yet?' artistId='0' artist='Sabrina Carpenter' />
 									<SongRow index={index ? 4 : undefined} art={art} id='0' name='is it new years yet?' artistId='0' artist='Sabrina Carpenter' />
 								</SongList>
-								<input type='checkbox' onChange={() => { toggleArt(!art) }} />
-								<input type='checkbox' onChange={() => { toggleIndex(!index) }} />
+								<Checkbox onClick={() => { toggleArt(!art) }} />
+								<Checkbox onClick={() => { toggleIndex(!index) }} />
 							</DemoItem>
 						</DemoGrid>
 					</section>

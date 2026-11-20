@@ -1,0 +1,81 @@
+.container {
+	display: flex;
+}
+
+.checkbox {
+	appearance: none;
+	border: none;
+
+	--b: transparent;
+	--bh: oklch(var(--b5) / 40%);
+	--ba: oklch(var(--b5) / 60%);
+	background-color: var(--b);
+	color: transparent;
+	box-shadow: inset 0 0 0 1px var(--separator-base);
+
+	--w: 18px;
+
+	width: var(--w);
+	height: var(--w);
+	border-radius: var(--radius-s);
+
+	--icon-size: 12px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: unset;
+
+	&[disabled] {
+		--bh: var(--b) !important;
+		--ba: var(--b) !important;
+
+		cursor: unset;
+		opacity: 0.7;
+	}
+
+	user-select: none;
+	-webkit-user-drag: none;
+}
+
+.checked {
+	--b: oklch(var(--h3));
+	--bh: color-mix(in oklch, oklch(var(--h4)), oklch(var(--h3)) 80%);
+	--ba: color-mix(in oklch, oklch(var(--h4)), oklch(var(--h3)) 60%);
+	box-shadow: inset 0 0 0 1px transparent;
+
+	color: oklch(var(--b7));
+
+	&>.check {
+		scale: 1;
+	}
+}
+
+.hoverable {
+	cursor: pointer;
+
+	transition-property: background, scale;
+	transition-duration: var(--trans);
+	transition-timing-function: var(--trans-function);
+
+	&:hover {
+		background-color: var(--bh);
+
+		transition-property: scale;
+	}
+
+	&:active {
+		background-color: var(--ba);
+
+		scale: 0.98;
+	}
+}
+
+.check {
+	scale: 0.3;
+	transform-origin: bottom left;
+
+	transition-property: scale;
+	transition-duration: 0.4s;
+	transition-timing-function: var(--trans-function-ani);
+}
