@@ -3,17 +3,42 @@
 	position: relative;
 }
 
+.tabs {
+	display: flex;
+	gap: 20px;
+
+	border-bottom: 1px solid var(--separator-base);
+
+	width: 100%;
+}
+
+.tab {
+	padding: 14px 0;
+
+	color: oklch(var(--c2));
+
+	transition-property: color, font-weight;
+	transition-duration: var(--trans);
+	transition-timing-function: var(--trans-function);
+}
+
+.active {
+	color: oklch(var(--l3-c));
+	font-weight: var(--font-weight-m);
+}
+
 .underline {
 	position: absolute;
 	height: 2px;
 	bottom: 0;
 
 	background-color: oklch(var(--h3));
+	border-radius: var(--radius-s);
 
 	left: 0;
 	width: 0;
 
 	transition-property: left, width;
-	transition-duration: 1s;
+	transition-duration: var(--trans);
 	transition-timing-function: var(--trans-function);
 }

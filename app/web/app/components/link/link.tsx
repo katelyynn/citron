@@ -1,9 +1,11 @@
-type LinkProps = React.ComponentProps<'a'>;
+import { Link as ReactLink, type LinkProps as ReactLinkProps } from 'react-router';
+
+type LinkProps = ReactLinkProps;
 
 export function Link({
 	...props
 }: LinkProps) {
 	return (
-		<a className='link-underline' {...props} />
+		<ReactLink className='link-underline' {...props} />
 	);
 }

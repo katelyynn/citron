@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import { CitronIcon } from '../icon/icon';
 import styles from './footer.module.css';
 
@@ -5,10 +6,10 @@ export function Footer() {
 	return (
 		<footer className={styles.footer}>
 			<sub className={styles.subName}>
-				<a className={styles.citron} href='/'>
+				<Link className={styles.citron} to='/'>
 					<CitronIcon />
 					citron
-				</a>
+				</Link>
 			</sub>
 			<sub className={styles.sub}>
 				<span className={styles.copyright}>

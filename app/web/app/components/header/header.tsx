@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { useAuth } from "../auth/provider";
 import Button from "../button/button";
 import { CitronIcon } from "../icon/icon";
@@ -13,10 +14,10 @@ export function Header() {
 	return (
 		<header className={styles.header}>
 			<div className={styles.left}>
-				<a className={styles.citron} href='/'>
+				<Link className={styles.citron} to='/'>
 					<CitronIcon />
 					citron
-				</a>
+				</Link>
 			</div>
 			<div className={styles.right}>
 				<Button href={`/user/${user.name}`}>
@@ -31,10 +32,10 @@ function LoggedOutHeader() {
 	return (
 		<header className={styles.header}>
 			<div className={styles.left}>
-				<a className={styles.citron} href='/'>
+				<Link className={styles.citron} to='/'>
 					<CitronIcon />
 					citron
-				</a>
+				</Link>
 			</div>
 			<div className={styles.right}>
 				<div className={styles.loggedOutPortal}>

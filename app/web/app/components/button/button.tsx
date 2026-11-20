@@ -1,6 +1,7 @@
 import { forwardRef, type ForwardedRef, type ReactNode } from "react";
 import styles from './button.module.css';
 import { SpinnerIcon } from "../icon/icon";
+import { Link } from "react-router";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	loading?: boolean;
@@ -48,14 +49,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
 		if (href) {
 			return (
-				<a className={classes} href={href} onClick={handleOnClick} disabled={disabled || loading} ref={ref as ForwardedRef<HTMLAnchorElement>} {...props}>
+				<Link className={classes} to={href} onClick={handleOnClick} disabled={disabled || loading} ref={ref as ForwardedRef<HTMLAnchorElement>} {...props}>
 					{!loading ? children : (
 						<>
 							<SpinnerIcon />
 							Loading
 						</>
 					)}
-				</a>
+				</Link>
 			)
 		}
 

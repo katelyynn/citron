@@ -1,6 +1,7 @@
 import { loadUser, UserPage } from "~/components/pages/user";
 import { Outlet } from "react-router";
 import type { Route } from "./+types/user.$name";
+import { useEffect } from "react";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
 	const name = params.name;
@@ -12,6 +13,11 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 
 export default function App({ loaderData }: Route.ServerComponentProps) {
 	const { user } = loaderData;
+
+	useEffect(() => {
+		console.log('user layout mounted');
+		return () => console.log('user layout unmounted');
+	}, []);
 
 	return (
 		<UserPage user={user}>
