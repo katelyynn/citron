@@ -63,4 +63,6 @@
 
 	color: oklch(var(--b7));
 	font-weight: var(--font-weight-m);
+
+	box-shadow: var(--primary-glow), var(--primary-shadow);
 }

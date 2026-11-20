@@ -37,7 +37,7 @@ authRoute.post('/register', async (c) => {
 			.limit(1);
 
 		if (existingEmail.length > 0) {
-			return c.json({ error: 'email is already in use' });
+			return c.json({ error: 'email is already in use' }, 400);
 		}
 
 		const passwordHash = await bcrypt.hash(password, 10);
