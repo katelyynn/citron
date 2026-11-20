@@ -1,0 +1,36 @@
+.alert {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+
+	padding: 8px 10px;
+	border-radius: var(--radius-s);
+
+	background-color: oklch(var(--k4) / 20%);
+	color: oklch(var(--l3-c));
+}
+
+.general {
+	background-color: unset;
+	box-shadow: inset 0 0 0 1px var(--separator-base);
+
+	color: oklch(var(--c2));
+}
+
+.success {
+	--hue-over: var(--hue-pos);
+	--sat-over: var(--sat-pos);
+	--lit-over: var(--lit-pos);
+}
+
+.error {
+	--hue-over: var(--hue-neg);
+	--sat-over: var(--sat-neg);
+	--lit-over: var(--lit-neg);
+}
+
+.warning {
+	--hue-over: 70;
+	--sat-over: 1.1;
+	--lit-over: 0.9;
+}

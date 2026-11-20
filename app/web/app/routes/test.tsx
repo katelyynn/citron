@@ -8,6 +8,7 @@ import { Avatar } from "~/components/avatar/avatar";
 import { SongList, SongRow } from "~/components/song/song";
 import Input from "~/components/input/input";
 import { Checkbox } from "~/components/check/check";
+import { Alert } from "~/components/alert/alert";
 
 export function meta({ }: Route.MetaArgs) {
 	return [
@@ -130,6 +131,24 @@ export default function Test() {
 								</SongList>
 								<Checkbox checked={art} setChecked={toggleArt} />
 								<Checkbox checked={index} setChecked={toggleIndex} />
+							</DemoItem>
+						</DemoGrid>
+					</section>
+					<section>
+						<DemoGrid>
+							<DemoItem label='Alert'>
+								<Alert>
+									This is some information
+								</Alert>
+								<Alert type='warning'>
+									This is some information
+								</Alert>
+								<Alert type='error'>
+									This is some information
+								</Alert>
+								<Alert type='success'>
+									This is some information
+								</Alert>
 							</DemoItem>
 						</DemoGrid>
 					</section>
