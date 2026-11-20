@@ -10,11 +10,18 @@
 	border-bottom: 1px solid var(--separator-base);
 }
 
-.logo {
-	font-size: 16px;
+.citron {
+	font-family: var(--font-citron);
+	font-size: 20px;
 	line-height: 20px;
-	font-weight: var(--font-weight-m);
+	font-weight: var(--font-weight);
 	color: oklch(var(--l3-c));
+
+	display: flex;
+	align-items: center;
+	gap: 0.2em;
+
+	--icon-size: 1em;
 }
 
 .left,

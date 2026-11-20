@@ -16,13 +16,20 @@
 	color: oklch(var(--c3));
 	text-decoration: none;
 
+	font-family: var(--font-citron);
 	font-size: 16px;
 	line-height: 20px;
-	font-weight: var(--font-weight-l);
+	font-weight: var(--font-weight);
 
 	transition-property: color;
 	transition-duration: var(--trans);
 	transition-timing-function: var(--trans-function);
+
+	display: flex;
+	align-items: center;
+	gap: 0.2em;
+
+	--icon-size: 1em;
 
 	&:hover {
 		color: oklch(var(--l3-c));

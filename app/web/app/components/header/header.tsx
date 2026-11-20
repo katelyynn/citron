@@ -1,5 +1,6 @@
 import { useAuth } from "../auth/provider";
 import Button from "../button/button";
+import { CitronIcon } from "../icon/icon";
 import styles from './header.module.css';
 
 export function Header() {
@@ -16,7 +17,8 @@ function LoggedOutHeader() {
 	return (
 		<header className={styles.header}>
 			<div className={styles.left}>
-				<a className={styles.logo} href='/'>
+				<a className={styles.citron} href='/'>
+					<CitronIcon />
 					citron
 				</a>
 			</div>

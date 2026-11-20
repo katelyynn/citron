@@ -1,7 +1,7 @@
 import type { IconProps as MingCuteIconProps } from '@mingcute/react';
 import type { ForwardRefExoticComponent } from 'react';
 import styles from './icon.module.css';
-import { AddRegular, CheckRegular, CloseRegular, Loading3Regular, LoadingRegular, MinimizeRegular } from '@mingcute/react/core-regular';
+import { AddRegular, CheckRegular, CitrusRegular, CloseRegular, Loading3Regular, LoadingRegular, MinimizeRegular } from '@mingcute/react/core-regular';
 
 type IconProps = {
 	name: ForwardRefExoticComponent<MingCuteIconProps & React.RefAttributes<SVGSVGElement>>;
@@ -48,5 +48,11 @@ export function PlusIcon() {
 export function MinusIcon() {
 	return (
 		<Icon name={MinimizeRegular} className={styles.minus} />
+	)
+}
+
+export function CitronIcon() {
+	return (
+		<Icon name={CitrusRegular} className={styles.citron} />
 	)
 }

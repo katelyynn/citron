@@ -1,5 +1,6 @@
 body {
 	--font: Hanken Grotesk, Inter, Roboto, sans-serif;
+	--font-citron: Gentium Book Plus, var(--font);
 	--font-size: 14px;
 	--line-height: 18px;
 
