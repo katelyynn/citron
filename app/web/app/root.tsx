@@ -13,6 +13,8 @@ import { Footer } from "./components/footer/footer";
 import { ContentMain, Page } from "./components/page/page";
 import { AuthProvider } from "./components/auth/provider";
 import { Header } from "./components/header/header";
+import type { Me } from "@citron/share/user";
+import type { ReactNode } from "react";
 
 export const links: Route.LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -65,17 +67,26 @@ export async function loader({ request }: Route.LoaderArgs) {
 	}
 }
 
-export default function App({ loaderData }: Route.ComponentProps) {
+// saves having to duplicate code
+export function Wrapper({ loaderData, children }: { loaderData: { user: Me | null }, children: ReactNode }) {
 	return (
-		<AuthProvider initial={loaderData.user}>
+		<AuthProvider initial={loaderData?.user}>
 			<Header />
-			<Outlet />
+			{children}
 			<Footer />
 		</AuthProvider>
 	);
 }
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+export default function App({ loaderData }: Route.ComponentProps) {
+	return (
+		<Wrapper loaderData={loaderData}>
+			<Outlet />
+		</Wrapper>
+	);
+}
+
+export function ErrorBoundary({ loaderData, error }: Route.ErrorBoundaryProps) {
 	let message = "Oops!";
 	let details = "An unexpected error occurred.";
 	let stack: string | undefined;
@@ -92,18 +103,20 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 	}
 
 	return (
-		<Page>
-			<ContentMain>
-				<section>
-					<h1>{message}</h1>
-					<p>{details}</p>
-					{stack && (
-						<pre>
-							<code>{stack}</code>
-						</pre>
-					)}
-				</section>
-			</ContentMain>
-		</Page>
+		<Wrapper loaderData={loaderData || { user: null }}>
+			<Page>
+				<ContentMain>
+					<section>
+						<h1>{message}</h1>
+						<p>{details}</p>
+						{stack && (
+							<pre>
+								<code>{stack}</code>
+							</pre>
+						)}
+					</section>
+				</ContentMain>
+			</Page>
+		</Wrapper>
 	);
 }
