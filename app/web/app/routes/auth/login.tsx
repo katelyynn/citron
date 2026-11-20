@@ -9,7 +9,7 @@ import { Form, FormFooter, FormInner } from "~/components/form/form";
 import { Icon } from "~/components/icon/icon";
 import Input from "~/components/input/input";
 import { DefaultLink } from "~/components/link/link";
-import { ContentAside, Page } from "~/components/page/page";
+import { ContentAside, ContentGeneric, Page } from "~/components/page/page";
 
 export default function App() {
 	const [email, setEmail] = useState('');
@@ -49,7 +49,7 @@ export default function App() {
 
 	return (
 		<Page>
-			<ContentAside>
+			<ContentGeneric>
 				<h1>Welcome back</h1>
 				<p>By continuing, you agree to citron's <DefaultLink to='/terms'>Terms of Use</DefaultLink> and <DefaultLink to='/privacy'>Privacy Policy</DefaultLink>.</p>
 				{error && (
@@ -71,7 +71,7 @@ export default function App() {
 					</FormFooter>
 				</Form>
 				<p>New here? <Cta to='/register'>Register an account</Cta></p>
-			</ContentAside>
+			</ContentGeneric>
 		</Page>
 	)
 }

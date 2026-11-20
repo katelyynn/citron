@@ -22,3 +22,11 @@
 
 	width: var(--content-aside);
 }
+
+.generic {
+	display: flex;
+	flex-direction: column;
+	gap: var(--page-gap);
+
+	width: 370px;
+}

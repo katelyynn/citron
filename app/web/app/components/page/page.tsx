@@ -42,3 +42,17 @@ export function ContentMain({
 		</main>
 	)
 }
+
+interface ContentGenericProps {
+	children: ReactNode;
+}
+
+export function ContentGeneric({
+	children
+}: ContentGenericProps) {
+	return (
+		<main className={styles.generic}>
+			{children}
+		</main>
+	)
+}
