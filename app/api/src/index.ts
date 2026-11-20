@@ -11,8 +11,8 @@ const app = new Hono()
 		origin: ['http://localhost:5173'],
 		credentials: true
 	}))
-	.route('/user', userRoute)
-	.route('/auth', authRoute);
+	.route('/api/user', userRoute)
+	.route('/api/auth', authRoute);
 
 app.get('/', (c) => {
 	return c.text('Hello Hono!')
