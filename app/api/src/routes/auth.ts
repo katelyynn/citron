@@ -156,3 +156,5 @@ export async function getAuthUser(c: any): Promise<string | null> {
 		return null;
 	}
 }
+
+export default authRoute;
