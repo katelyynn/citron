@@ -13,7 +13,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	className?: string;
 	children?: ReactNode;
 	onClick?: () => void;
-	href?: string;
+	to?: string;
 	target?: '_blank';
 }
 
@@ -28,7 +28,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 		className,
 		children,
 		onClick,
-		href,
+		to,
 		target,
 		...props
 	}, ref) => {
@@ -47,9 +47,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 			onClick?.();
 		}
 
-		if (href) {
+		if (to) {
 			return (
-				<Link className={classes} to={href} onClick={handleOnClick} disabled={disabled || loading} ref={ref as ForwardedRef<HTMLAnchorElement>} {...props}>
+				<Link className={classes} to={to} onClick={handleOnClick} disabled={disabled || loading} ref={ref as ForwardedRef<HTMLAnchorElement>} {...props}>
 					{!loading ? children : (
 						<>
 							<SpinnerIcon />

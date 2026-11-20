@@ -30,8 +30,62 @@
 	align-items: center;
 }
 
+.leftNav {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+
+	margin-left: 20px;
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+
+	padding: 2px 0;
+
+	--line-colour: transparent;
+
+	color: oklch(var(--c2));
+
+	&:hover {
+		color: oklch(var(--l3-c));
+	}
+}
+
 .loggedOutPortal {
 	display: flex;
 	align-items: center;
 	gap: 10px;
+}
+
+.avatar {
+	background-color: oklch(var(--b5) / 20%);
+}
+
+.user {
+	--padding: 10px;
+
+	padding: var(--padding);
+	margin: calc(-1 * var(--padding));
+	border-radius: 50%;
+
+	--b: transparent;
+	--bh: transparent;
+	--ba: transparent;
+
+	box-shadow: unset;
+
+	outline: 2px solid transparent;
+	outline-offset: -8px;
+
+	transition-property: scale, outline-color !important;
+	transition-duration: var(--trans);
+	transition-timing-function: var(--trans-function);
+
+	&:hover,
+	&[aria-expanded] {
+		outline-color: oklch(var(--l3-c) / 60%);
+	}
 }

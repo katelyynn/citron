@@ -58,7 +58,7 @@ export default function Test() {
 									<MinusIcon />
 									Minus
 								</Button>
-								<Button primary={primary} href='#' loading={loading}>
+								<Button primary={primary} to='#' loading={loading}>
 									Link
 								</Button>
 								<Checkbox checked={primary} setChecked={togglePrimary} />
