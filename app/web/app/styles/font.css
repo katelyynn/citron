@@ -6,7 +6,7 @@ body {
 	--font-size-sm: 12px;
 	--line-height-sm: 16px;
 
-	--font-weight: 500;
+	--font-weight: 400;
 	--font-weight-m: 600;
 	--font-weight-l: 700;
 	--font-weight-xl: 800;
@@ -27,4 +27,11 @@ label {
 a {
 	color: oklch(var(--l3-c));
 	text-decoration: none;
+}
+
+h1 {
+	color: oklch(var(--c1));
+	font-size: 28px;
+	line-height: 32px;
+	font-weight: var(--font-weight-l);
 }

@@ -1,0 +1,28 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.inner {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+
+	width: 100%;
+}
+
+.label {
+	font-size: calc(var(--font-size) - 1px);
+	color: oklch(var(--c3));
+}
+
+.footer {
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: 1px solid var(--separator-base);
+
+	display: flex;
+	justify-content: end;
+	gap: 10px;
+}

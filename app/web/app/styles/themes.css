@@ -55,6 +55,14 @@ body {
 
 	color-scheme: dark;
 	accent-color: oklch(var(--h3));
+
+	--hue-pos: 133;
+	--sat-pos: 1.19;
+	--lit-pos: 0.98;
+
+	--hue-neg: 23;
+	--sat-neg: 1.9;
+	--lit-neg: 0.83;
 }
 
 body,

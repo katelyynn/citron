@@ -6,6 +6,7 @@ import Cta from "~/components/cta/cta";
 import { ContentMain, Page } from "~/components/page/page";
 import { Avatar } from "~/components/avatar/avatar";
 import { SongList, SongRow } from "~/components/song/song";
+import Input from "~/components/input/input";
 
 export function meta({ }: Route.MetaArgs) {
 	return [
@@ -19,6 +20,8 @@ export default function Test() {
 	const [index, toggleIndex] = useState(false);
 	const [avi, showAvi] = useState(false);
 	const [primary, togglePrimary] = useState(false);
+
+	const [inputError, setInputError] = useState(false);
 
 	return (
 		<>
@@ -85,6 +88,16 @@ export default function Test() {
 								<Cta target='_blank' loading>
 									See more
 								</Cta>
+							</DemoItem>
+						</DemoGrid>
+					</section>
+					<section>
+						<DemoGrid>
+							<DemoItem label='Input'>
+								<Input type='text' error={inputError ? 'Put error text here' : undefined} />
+								<Input type='email' error={inputError ? 'Put error text here' : undefined} />
+								<Input type='password' error={inputError ? 'Put error text here' : undefined} />
+								<input type='checkbox' onChange={() => { setInputError(!inputError) }} />
 							</DemoItem>
 						</DemoGrid>
 					</section>
