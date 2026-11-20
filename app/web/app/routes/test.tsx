@@ -9,6 +9,7 @@ import { SongList, SongRow } from "~/components/song/song";
 import Input from "~/components/input/input";
 import { Checkbox } from "~/components/check/check";
 import { Alert } from "~/components/alert/alert";
+import { Tabs } from "~/components/tabs/tabs";
 
 export function meta({ }: Route.MetaArgs) {
 	return [
@@ -68,7 +69,7 @@ export default function Test() {
 									See more
 								</Cta>
 								<Cta placement='left'>
-									See more
+									See less
 								</Cta>
 								<Cta target='_blank'>
 									See more
@@ -149,6 +150,22 @@ export default function Test() {
 								<Alert type='success'>
 									This is some information
 								</Alert>
+							</DemoItem>
+						</DemoGrid>
+					</section>
+					<section>
+						<DemoGrid>
+							<DemoItem label='Tabs'>
+								<Tabs tabs={[
+									{
+										href: '#',
+										children: 'Hello'
+									},
+									{
+										href: '#',
+										children: 'World'
+									}
+								]} />
 							</DemoItem>
 						</DemoGrid>
 					</section>

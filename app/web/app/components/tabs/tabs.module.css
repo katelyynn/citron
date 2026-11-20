@@ -1,0 +1,19 @@
+.container {
+	display: flex;
+	position: relative;
+}
+
+.underline {
+	position: absolute;
+	height: 2px;
+	bottom: 0;
+
+	background-color: oklch(var(--h3));
+
+	left: 0;
+	width: 0;
+
+	transition-property: left, width;
+	transition-duration: 1s;
+	transition-timing-function: var(--trans-function);
+}
