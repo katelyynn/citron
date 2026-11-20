@@ -3,6 +3,8 @@
 	margin: 40px 0;
 	gap: var(--content-gap);
 	width: var(--page);
+
+	flex: 1;
 }
 
 .main {

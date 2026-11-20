@@ -17,6 +17,8 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
+	min-height: 100vh;
 }
 
 .demo-grid {
@@ -40,7 +42,7 @@ body {
 .link-underline {
 	--line-thickness: .08em;
 	--line-inset: .04em;
-	--line-colour: color-mix(in oklch, transparent 70%, oklch(var(--l3-c)));
+	--line-colour: color-mix(in oklch, transparent 70%, currentColor);
 	--line-colour-active: currentColor;
 
 	background-image: linear-gradient(to right, var(--line-colour-active), var(--line-colour-active)), linear-gradient(to right, var(--line-colour), var(--line-colour));

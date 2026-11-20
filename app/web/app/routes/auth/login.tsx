@@ -8,7 +8,7 @@ import Cta from "~/components/cta/cta";
 import { Form, FormFooter, FormInner } from "~/components/form/form";
 import { Icon } from "~/components/icon/icon";
 import Input from "~/components/input/input";
-import { Link } from "~/components/link/link";
+import { DefaultLink } from "~/components/link/link";
 import { ContentAside, Page } from "~/components/page/page";
 
 export default function App() {
@@ -51,7 +51,7 @@ export default function App() {
 		<Page>
 			<ContentAside>
 				<h1>Welcome back</h1>
-				<p>By continuing, you agree to citron's <Link href='/terms'>Terms of Use</Link> and <Link href='/privacy'>Privacy Policy</Link>.</p>
+				<p>By continuing, you agree to citron's <DefaultLink to='/terms'>Terms of Use</DefaultLink> and <DefaultLink to='/privacy'>Privacy Policy</DefaultLink>.</p>
 				{error && (
 					<Alert type='error'>
 						{error}
@@ -70,7 +70,7 @@ export default function App() {
 						</Button>
 					</FormFooter>
 				</Form>
-				<p>New here? <Cta href='/register'>Register an account</Cta></p>
+				<p>New here? <Cta to='/register'>Register an account</Cta></p>
 			</ContentAside>
 		</Page>
 	)

@@ -2,6 +2,7 @@ import { forwardRef, type ForwardedRef, type ReactElement, type ReactNode } from
 import styles from './cta.module.css';
 import { Icon, SpinnerIcon } from "../icon/icon";
 import { ArrowRightUpRegular, LeftRegular, RightRegular } from "@mingcute/react/core-regular";
+import { Link } from "react-router";
 
 interface CtaProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	loading?: boolean;
@@ -12,7 +13,7 @@ interface CtaProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	className?: string;
 	children?: ReactNode;
 	onClick?: () => void;
-	href?: string;
+	to?: string;
 	target?: '_blank';
 }
 
@@ -26,7 +27,7 @@ const Cta = forwardRef<HTMLButtonElement, CtaProps>(
 		className,
 		children,
 		onClick,
-		href,
+		to,
 		target,
 		...props
 	}, ref) => {
@@ -67,11 +68,11 @@ const Cta = forwardRef<HTMLButtonElement, CtaProps>(
 			</>
 		);
 
-		if (href) {
+		if (to) {
 			return (
-				<a className={classes} href={href} onClick={handleOnClick} disabled={disabled || loading} ref={ref as ForwardedRef<HTMLAnchorElement>} {...props}>
+				<Link className={classes} to={to} onClick={handleOnClick} disabled={disabled || loading} ref={ref as ForwardedRef<HTMLAnchorElement>} {...props}>
 					{content}
-				</a>
+				</Link>
 			)
 		}
 

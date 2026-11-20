@@ -1,4 +1,14 @@
 .footer {
+	width: 100%;
+	background-color: oklch(var(--b7) / 20%);
+
+	display: flex;
+	justify-content: center;
+
+	padding: 20px 0;
+}
+
+.inner {
 	width: var(--page);
 	cursor: default;
 
@@ -40,10 +50,21 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-}
 
-.copyright {
 	color: oklch(var(--c3));
 	font-size: var(--font-size-sm);
 	line-height: var(--line-height-sm);
+}
+
+.subLinks {
+	display: flex;
+	gap: 4px;
+}
+
+.subLink {
+	color: inherit;
+
+	&:hover {
+		color: oklch(var(--l3-c));
+	}
 }

@@ -1,7 +1,7 @@
 import { loadUser, UserPage } from "~/components/pages/user";
 import { Outlet } from "react-router";
-import type { Route } from "./+types/user.$name";
 import { useEffect } from "react";
+import type { Route } from "./+types/layout";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
 	const name = params.name;

@@ -1,11 +1,14 @@
 import { Link as ReactLink, type LinkProps as ReactLinkProps } from 'react-router';
 
-type LinkProps = ReactLinkProps;
+type LinkProps = {
+	className?: string;
+} & ReactLinkProps;
 
-export function Link({
+export function DefaultLink({
+	className,
 	...props
 }: LinkProps) {
 	return (
-		<ReactLink className='link-underline' {...props} />
+		<ReactLink className={['link-underline', className].join(' ')} {...props} />
 	);
 }
