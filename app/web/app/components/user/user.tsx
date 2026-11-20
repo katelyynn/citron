@@ -15,7 +15,7 @@ export function UserItem({
 }: UserItemProps) {
 	return (
 		<div className={styles.item}>
-			<Avatar className={styles.avatar} src={user.avatar} alt={user.name} />
+			<Avatar size='s' className={styles.avatar} src={user.avatar} alt={user.name} />
 			<div className={styles.content}>
 				<DefaultLink className={styles.name} to={`/user/${user.name}`}>
 					{user.name}

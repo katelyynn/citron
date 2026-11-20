@@ -21,6 +21,15 @@
 }
 
 .name {
+	color: oklch(var(--c2));
+	font-weight: var(--font-weight-m);
+
+	--line-colour: transparent;
+
+	&:hover {
+		color: oklch(var(--l3-c));
+	}
+
 	&:after {
 		content: '';
 		position: absolute;
