@@ -7,6 +7,7 @@ export interface Me {
 	pronouns: {
 		personal?: string;
 		possessive?: string;
+		determiner?: string;
 	}
 }
 
@@ -19,6 +20,7 @@ export interface User {
 	pronouns: {
 		personal?: string;
 		possessive?: string;
+		determiner?: string;
 	}
 }
 

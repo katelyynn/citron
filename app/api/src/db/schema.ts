@@ -12,7 +12,8 @@ export const users = pgTable('users', {
 	avatar: text('avatar'),
 
 	personalPronoun: text('personalPronoun').default('they'),
-	possessivePronoun: text('possessivePronoun').default('them')
+	possessivePronoun: text('possessivePronoun').default('them'),
+	possessiveDeterminer: text('possessiveDeterminer').default('their')
 });
 
 export const artists = pgTable('artists', {

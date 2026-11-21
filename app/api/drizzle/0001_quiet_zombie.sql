@@ -1,0 +1,1 @@
+ALTER TABLE "users" ADD COLUMN "possessiveDeterminer" text DEFAULT 'their';

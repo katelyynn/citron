@@ -14,7 +14,8 @@ userRoute.get('/', async (c) => {
 		created: users.created,
 		pronouns: {
 			personal: users.personalPronoun,
-			possessive: users.possessivePronoun
+			possessive: users.possessivePronoun,
+			determiner: users.possessiveDeterminer
 		}
 	}).from(users);
 
@@ -33,7 +34,8 @@ userRoute.get('/:name', async (c) => {
 			created: users.created,
 			pronouns: {
 				personal: users.personalPronoun,
-				possessive: users.possessivePronoun
+				possessive: users.possessivePronoun,
+				determiner: users.possessiveDeterminer
 			}
 		}).from(users).where(eq(users.name, name)).limit(1);
 

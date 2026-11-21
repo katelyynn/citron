@@ -9,6 +9,8 @@
 	font-weight: var(--font-weight);
 
 	color: oklch(var(--c1));
+
+	margin-bottom: 10px;
 }
 
 .icon {
