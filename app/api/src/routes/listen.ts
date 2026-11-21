@@ -85,7 +85,11 @@ listenRoute.post('/', async (c) => {
 			spotifyId,
 			appleMusicId,
 			mbid,
-			isrc
+			isrc,
+			rawName: songName,
+			rawArtist: artistName,
+			rawAlbum: albumName,
+			rawAlbumArtist: albumArtistName
 		});
 
 		return c.json({ message: 'submitted listen', song: song }, 201);

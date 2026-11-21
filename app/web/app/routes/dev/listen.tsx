@@ -26,7 +26,8 @@ export default function App() {
 					name,
 					artist,
 					album,
-					albumArtist
+					albumArtist,
+					submitter: 'citron-web'
 				})
 			});
 
