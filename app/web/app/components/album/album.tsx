@@ -1,7 +1,8 @@
-import { DiscRegular } from '@mingcute/react/core-regular';
+import { AlbumRegular, DiscRegular } from '@mingcute/react/core-regular';
 import { Icon } from '../icon/icon';
 import styles from './album.module.css';
 import { DefaultLink } from '../link/link';
+import type { ReactNode } from 'react';
 
 interface AlbumProps {
 	art?: string;
@@ -18,7 +19,7 @@ export function Album({
 	name,
 	artistId,
 	artist,
-	showArtist
+	showArtist = true
 }: AlbumProps) {
 	return (
 		<div className={styles.album}>
@@ -27,18 +28,34 @@ export function Album({
 					<img className={styles.image} src={art} alt={name} />
 				) : (
 					<div className={styles.placeholder}>
-						<Icon name={DiscRegular} />
+						<Icon name={AlbumRegular} />
 					</div>
 				)}
 			</div>
-			<DefaultLink className={styles.name} to={`/album/${id}`}>
-				{name}
-			</DefaultLink>
-			{showArtist && (
-				<DefaultLink className={styles.artist} to={`/album/${artistId}`}>
-					{artist}
+			<div className={styles.content}>
+				<DefaultLink className={styles.name} to={`/album/${id}`}>
+					{name}
 				</DefaultLink>
-			)}
+				{showArtist && (
+					<DefaultLink className={styles.artist} to={`/album/${artistId}`}>
+						{artist}
+					</DefaultLink>
+				)}
+			</div>
+		</div>
+	)
+}
+
+interface AlbumListProps {
+	children: ReactNode;
+}
+
+export function AlbumList({
+	children
+}: AlbumListProps) {
+	return (
+		<div className={styles.list}>
+			{children}
 		</div>
 	)
 }

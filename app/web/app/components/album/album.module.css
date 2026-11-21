@@ -1,0 +1,73 @@
+.album {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	width: 190px;
+	position: relative;
+
+	&:hover {
+		&>.art {
+			outline-color: oklch(var(--l3-c) / 60%);
+		}
+	}
+}
+
+.art {
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	border-radius: var(--radius-s);
+
+	background-color: oklch(var(--b5) / 40%);
+	outline: 2px solid transparent;
+
+	transition-property: outline-color;
+	transition-duration: var(--trans);
+	transition-timing-function: var(--trans-function);
+}
+
+.placeholder {
+	height: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: oklch(var(--c3));
+	--icon-size: 64px;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+}
+
+.list {
+	display: flex;
+	gap: 10px;
+}
+
+.name {
+	color: oklch(var(--c2));
+	--line-colour: transparent;
+	width: fit-content;
+
+	&:hover {
+		color: oklch(var(--l3-c));
+	}
+
+	&:after {
+		content: '';
+		position: absolute;
+		inset: 0;
+	}
+}
+
+.artist {
+	color: oklch(var(--c2) / 80%);
+	--line-colour: transparent;
+	width: fit-content;
+
+	&:hover {
+		color: oklch(var(--l3-c));
+	}
+}

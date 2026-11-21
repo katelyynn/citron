@@ -12,6 +12,7 @@ import { Alert } from "~/components/alert/alert";
 import { Tabs } from "~/components/tabs/tabs";
 import { SectionHead } from "~/components/head/head";
 import { WaveHandRegular } from "@mingcute/react/core-regular";
+import { Album, AlbumList } from "~/components/album/album";
 
 export function meta({ }: Route.MetaArgs) {
 	return [
@@ -134,6 +135,19 @@ export default function Test() {
 								</SongList>
 								<Checkbox checked={art} setChecked={toggleArt} />
 								<Checkbox checked={index} setChecked={toggleIndex} />
+							</DemoItem>
+						</DemoGrid>
+					</section>
+					<section>
+						<DemoGrid>
+							<DemoItem label='Album'>
+								<AlbumList>
+									<Album art={art} id='0' name='is it new years yet?' artistId='0' artist='Sabrina Carpenter' />
+									<Album art={art} id='0' name='is it new years yet?' artistId='0' artist='Sabrina Carpenter' />
+									<Album art={art} id='0' name='is it new years yet?' artistId='0' artist='Sabrina Carpenter' />
+									<Album art={art} id='0' name='is it new years yet?' artistId='0' artist='Sabrina Carpenter' />
+								</AlbumList>
+								<Checkbox checked={art} setChecked={toggleArt} />
 							</DemoItem>
 						</DemoGrid>
 					</section>
