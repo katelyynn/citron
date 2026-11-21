@@ -16,5 +16,7 @@ export default [
 
 	route('community', 'routes/home/community.tsx'),
 
+	route('listen', 'routes/dev/listen.tsx'),
+
 	...(await flatRoutes())
 ] satisfies RouteConfig;

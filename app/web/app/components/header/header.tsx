@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { useAuth } from "../auth/provider";
 import Button from "../button/button";
-import { CitronIcon, Icon } from "../icon/icon";
+import { CitronIcon, Icon, PlusIcon } from "../icon/icon";
 import styles from './header.module.css';
 import { Avatar } from "../avatar/avatar";
 import { DefaultLink } from "../link/link";
@@ -38,6 +38,10 @@ export function Header() {
 				</div>
 			</div>
 			<div className={styles.right}>
+				<Button primary to='/listen'>
+					<PlusIcon />
+					Create
+				</Button>
 				<Button className={styles.user} to={`/user/${user.name}`}>
 					<Avatar className={styles.avatar} size='xs' src={user.avatar} alt={user.name} />
 				</Button>
