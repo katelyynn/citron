@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import styles from './page.module.css';
 
 interface PageProps {
-	children: ReactNode;
+	children?: ReactNode;
 }
 
 export function Page({
