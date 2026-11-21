@@ -1,7 +1,7 @@
 import { useOutletContext } from "react-router";
 import type { User } from "@citron/share/user";
 import { SectionHead } from "~/components/head/head";
-import { Book5Regular } from "@mingcute/react/core-regular";
+import { Book5Regular, MusicRegular } from "@mingcute/react/core-regular";
 import type { Route } from "./+types/listens";
 
 export default function App({ loaderData }: Route.ServerComponentProps) {
@@ -9,8 +9,8 @@ export default function App({ loaderData }: Route.ServerComponentProps) {
 
 	return (
 		<section>
-			<SectionHead icon={Book5Regular}>
-				Listens
+			<SectionHead icon={MusicRegular}>
+				Songs
 			</SectionHead>
 		</section>
 	)
