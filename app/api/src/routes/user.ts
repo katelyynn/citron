@@ -49,11 +49,11 @@ userRoute.get('/:name', async (c) => {
 	}
 });
 
-userRoute.get('/:id/recent', async (c) => {
-	const id = c.req.param('id');
+userRoute.get('/:name/recent', async (c) => {
+	const name = c.req.param('name');
 
 	const user = await c.get('db').query.users.findFirst({
-		where: eq(users.id, id),
+		where: eq(users.name, name),
 		columns: {
 			id: true
 		},
