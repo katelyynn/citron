@@ -49,6 +49,7 @@
 .name {
 	color: oklch(var(--c2));
 	--line-colour: transparent;
+	width: fit-content;
 
 	&:hover {
 		color: oklch(var(--l3-c));
@@ -58,6 +59,7 @@
 .artist {
 	color: oklch(var(--c2) / 80%);
 	--line-colour: transparent;
+	width: fit-content;
 
 	&:hover {
 		color: oklch(var(--l3-c));
