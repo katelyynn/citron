@@ -65,6 +65,21 @@ export const listens = pgTable('listens', {
 // TODO: these need to support having multiple artists
 // ...somehow
 
+export const listenRelations = relations(listens, ({ one }) => ({
+	user: one(users, {
+		fields: [listens.user],
+		references: [users.id]
+	}),
+	song: one(songs, {
+		fields: [listens.song],
+		references: [songs.id]
+	})
+}));
+
+export const userRelations = relations(users, ({ many }) => ({
+	listens: many(listens)
+}));
+
 export const artistRelations = relations(artists, ({ many }) => ({
 	albums: many(albums),
 	songs: many(songs)

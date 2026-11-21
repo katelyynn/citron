@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import type { Env } from "../middleware/db.ts";
-import { users } from "../db/schema.ts";
-import { eq } from "drizzle-orm";
+import { albums, artists, listens, songs, users } from "../db/schema.ts";
+import { desc, eq } from "drizzle-orm";
 
 const userRoute = new Hono<Env>();
 
@@ -47,6 +47,37 @@ userRoute.get('/:name', async (c) => {
 	} catch {
 		return c.json({ error: 'user not found' }, 404);
 	}
+});
+
+userRoute.get('/:id/recent', async (c) => {
+	const id = c.req.param('id');
+
+	const user = await c.get('db').query.users.findFirst({
+		where: eq(users.id, id),
+		columns: {
+			id: true
+		},
+		with: {
+			listens: {
+				orderBy: desc(listens.created),
+				limit: 10,
+				with: {
+					song: {
+						with: {
+							artist: true,
+							album: true
+						}
+					}
+				}
+			}
+		}
+	});
+
+	if (!user) {
+		return c.json({ error: 'user not found' }, 404);
+	}
+
+	return c.json(user.listens);
 });
 
 export default userRoute;
