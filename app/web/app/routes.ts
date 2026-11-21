@@ -4,8 +4,16 @@ import { flatRoutes } from "@react-router/fs-routes";
 export default [
 	route('user/:name', 'routes/user/layout.tsx', [
 		index('routes/user/_index.tsx'),
-		route('library', 'routes/user/library.tsx'),
-		route('wall', 'routes/user/wall.tsx')
+		route('wall', 'routes/user/wall.tsx'),
+
+		route('library', 'routes/user/library/layout.tsx', [
+			index('routes/user/library/listens.tsx'),
+			route('artists', 'routes/user/library/artists.tsx'),
+			route('albums', 'routes/user/library/albums.tsx'),
+			route('songs', 'routes/user/library/songs.tsx'),
+			route('favourites', 'routes/user/library/favourites.tsx'),
+			route('rotation', 'routes/user/library/rotation.tsx'),
+		]),
 	]),
 
 	route('login', 'routes/auth/login.tsx'),

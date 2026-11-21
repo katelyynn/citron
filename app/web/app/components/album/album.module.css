@@ -33,7 +33,7 @@
 	justify-content: center;
 	align-items: center;
 	color: oklch(var(--c3));
-	--icon-size: 64px;
+	--icon-size: 96px;
 }
 
 .content {

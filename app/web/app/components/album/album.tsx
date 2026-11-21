@@ -3,6 +3,7 @@ import { Icon } from '../icon/icon';
 import styles from './album.module.css';
 import { DefaultLink } from '../link/link';
 import type { ReactNode } from 'react';
+import { DiscAlbumFilled } from '@mingcute/react/core-filled';
 
 interface AlbumProps {
 	art?: string;
@@ -28,7 +29,7 @@ export function Album({
 					<img className={styles.image} src={art} alt={name} />
 				) : (
 					<div className={styles.placeholder}>
-						<Icon name={AlbumRegular} />
+						<Icon name={DiscAlbumFilled} />
 					</div>
 				)}
 			</div>

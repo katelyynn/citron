@@ -10,12 +10,14 @@ export interface Tab {
 interface TabsProps {
 	location?: string;
 	starting?: string;
+	style?: 'tabs' | 'buttons';
 	tabs: Tab[];
 }
 
 export function Tabs({
 	location = '/',
 	starting = '',
+	style = 'tabs',
 	tabs
 }: TabsProps) {
 	const [underline, setUnderline] = useState({ left: 0, width: 0 });
@@ -37,14 +39,16 @@ export function Tabs({
 	}, [location, starting, tabs]);
 
 	return (
-		<div className={styles.container}>
-			<ul className={styles.tabs} role='tablist'>
+		<div className={styles[`${style}-container`]}>
+			<ul className={[
+				styles[style],
+			].join(' ')} role='tablist'>
 				{tabs.map((tab, index) => {
 					const active = `${starting}${tab.href}`.replace(/\/+$/, '') == location.replace(/\/+$/, '');
 
 					return (
 						<Link key={index} className={[
-							styles.tab,
+							styles[`${style}-item`],
 							active && styles.active
 						].join(' ')} to={starting + tab.href} ref={active ? selected : null}>
 							{tab.children}
@@ -52,7 +56,7 @@ export function Tabs({
 					);
 				})}
 			</ul>
-			<div className={styles.underline} style={{
+			<div className={styles[`${style}-underline`]} style={{
 				left: underline.left,
 				width: underline.width
 			}} />

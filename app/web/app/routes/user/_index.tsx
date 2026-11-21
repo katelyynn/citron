@@ -5,7 +5,7 @@ import type { Listen } from "@citron/share/listen";
 import type { Route } from "./+types/_index";
 import { SectionHead } from "~/components/head/head";
 import { AlbumRegular, IterationCcwRegular, MusicRegular } from "@mingcute/react/core-regular";
-import { Mic2Filled, StarTopperFilled } from "@mingcute/react/core-filled";
+import { CircleStarFilled, DiscAlbumFilled, Mic2Filled, StarTopperFilled } from "@mingcute/react/core-filled";
 import { SectionPlaceholder } from "~/components/placeholder/placeholder";
 import { useAuth } from "~/components/auth/provider";
 import { SongList, SongRow } from "~/components/song/song";
@@ -73,7 +73,7 @@ export default function App({ loaderData }: Route.ServerComponentProps) {
 				)}
 			</section>
 			<section>
-				<SectionHead icon={Mic2Filled}>
+				<SectionHead icon={CircleStarFilled}>
 					Artists
 				</SectionHead>
 				<SectionPlaceholder>
@@ -81,7 +81,7 @@ export default function App({ loaderData }: Route.ServerComponentProps) {
 				</SectionPlaceholder>
 			</section>
 			<section>
-				<SectionHead icon={AlbumRegular}>
+				<SectionHead icon={DiscAlbumFilled}>
 					Albums
 				</SectionHead>
 				<SectionPlaceholder>
