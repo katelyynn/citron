@@ -27,7 +27,7 @@ export const albums = pgTable('albums', {
 	name: text('name').notNull(),
 	artist: uuid('artist').notNull().references(() => artists.id),
 	created: timestamp('created').notNull().defaultNow(),
-	released: timestamp('released').notNull()
+	released: timestamp('released')
 });
 
 export const songs = pgTable('songs', {

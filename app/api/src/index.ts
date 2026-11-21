@@ -5,6 +5,7 @@ import { dbMiddleware } from './middleware/db.ts'
 import userRoute from './routes/user.ts';
 import { cors } from 'hono/cors';
 import authRoute from './routes/auth.ts';
+import { listenRoute } from './routes/listen.ts';
 
 const app = new Hono()
 	.use('*', dbMiddleware, cors({
@@ -12,7 +13,8 @@ const app = new Hono()
 		credentials: true
 	}))
 	.route('/api/user', userRoute)
-	.route('/api/auth', authRoute);
+	.route('/api/auth', authRoute)
+	.route('/api/listen', listenRoute);
 
 app.get('/', (c) => {
 	return c.text('Hello Hono!')
