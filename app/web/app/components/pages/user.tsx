@@ -55,6 +55,10 @@ export function UserPage({
 	];
 
 	const location = useLocation();
+	let path = location.pathname;
+
+	if (path.startsWith(`/user/${user.name}/library/`))
+		path = `/user/${user.name}/library`;
 
 	return (
 		<Page>
@@ -64,7 +68,7 @@ export function UserPage({
 			<ContentMain>
 				<h1>{user.name}</h1>
 				<p>since {DateTime.fromISO(user.created).toLocaleString(DateTime.DATETIME_MED)}</p>
-				<Tabs tabs={tabs} location={location.pathname} starting={`/user/${user.name}`} />
+				<Tabs tabs={tabs} location={path} starting={`/user/${user.name}`} />
 				{children}
 			</ContentMain>
 		</Page>
