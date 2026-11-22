@@ -115,11 +115,17 @@ export const wall = pgTable('wall', {
 	id: uuid('id').primaryKey().defaultRandom(),
 	user: uuid('user').notNull().references(() => users.id),
 
-	targetType: text('targetType').notNull(),
-	targetId: uuid('targetId').notNull(),
+	// what is being described?
+	// e.g. is it a list of artists, songs, users
+	type: text('type').notNull(),
+	// the lists themselves
+	artists: uuid('artists').array(),
+	albums: uuid('albums').array(),
+	songs: uuid('songs').array(),
+	users: uuid('users').array(),
+	comments: uuid('comments').array(),
+	// the action being performed on the list
+	action: text('action').notNull(),
 
-	metadata: text('metadata'),
-	created: timestamp('created').notNull().defaultNow(),
-	count: integer('count').notNull().default(1),
-	artists: uuid('artists').array().notNull().default([])
+	created: timestamp('created').notNull().defaultNow()
 });

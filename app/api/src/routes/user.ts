@@ -3,7 +3,7 @@ import type { Env } from "../middleware/db.ts";
 import { albums, artists, listens, songs, users } from "../db/schema.ts";
 import { desc, eq } from "drizzle-orm";
 
-const userRoute = new Hono<Env>();
+export const userRoute = new Hono<Env>();
 
 userRoute.get('/', async (c) => {
 	const allUsers = await c.get('db').select({
@@ -79,5 +79,3 @@ userRoute.get('/:name/recent', async (c) => {
 
 	return c.json(user.listens);
 });
-
-export default userRoute;
