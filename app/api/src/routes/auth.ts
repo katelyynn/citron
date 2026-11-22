@@ -52,7 +52,8 @@ authRoute.post('/register', async (c) => {
 
 		return c.json({ message: 'created user' }, 201);
 	} catch (e) {
-		return c.json({ error: (e as Error).message }, 500);
+		console.error(e);
+		return c.json({ message: 'sorry, something went wrong' }, 500);
 	}
 });
 
@@ -126,7 +127,8 @@ authRoute.get('/me', async (c) => {
 			created: users.created,
 			pronouns: {
 				personal: users.personalPronoun,
-				possessive: users.possessivePronoun
+				possessive: users.possessivePronoun,
+				determiner: users.possessiveDeterminer
 			}
 		}).from(users).where(eq(users.id, id)).limit(1);
 
