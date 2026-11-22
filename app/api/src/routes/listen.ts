@@ -4,6 +4,7 @@ import { eq } from "drizzle-orm";
 import { albums, artists, listens, songs } from "../db/schema.ts";
 import { getCookie } from "hono/cookie";
 import { jwtVerify } from "jose";
+import { createWallEntry } from "./wall.ts";
 
 export const listenRoute = new Hono<Env>();
 
@@ -76,23 +77,33 @@ listenRoute.post('/', async (c) => {
 
 		const played = timestamp ? new Date(timestamp) : new Date();
 
-		await c.get('db').insert(listens).values({
-			user: id,
-			song: song.id,
-			created: played,
-			duration,
-			submitter,
-			spotifyId,
-			appleMusicId,
-			mbid,
-			isrc,
-			rawName: songName,
-			rawArtist: artistName,
-			rawAlbum: albumName,
-			rawAlbumArtist: albumArtistName
+		const result = await c.get('db').transaction(async (t) => {
+			const [listen] = await c.get('db').insert(listens).values({
+				user: id,
+				song: song.id,
+				created: played,
+				duration,
+				submitter,
+				spotifyId,
+				appleMusicId,
+				mbid,
+				isrc,
+				rawName: songName,
+				rawArtist: artistName,
+				rawAlbum: albumName,
+				rawAlbumArtist: albumArtistName
+			});
+
+			const wall = await createWallEntry(t, id, {
+				type: 'song',
+				action: 'listen',
+				songs: [song]
+			});
+
+			return { listen, wall };
 		});
 
-		return c.json({ message: 'submitted listen', song: song }, 201);
+		return c.json(result, 201);
 	} catch (e) {
 		return c.json({ error: (e as Error).message }, 500);
 	}

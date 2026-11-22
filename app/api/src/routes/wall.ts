@@ -67,8 +67,70 @@ interface WallEntry {
 	comments?: string[];
 }
 
-export function createWallEntry(t: any, id: string, body: WallEntry) {
+export async function createWallEntry(t: any, id: string, body: WallEntry, wallId?: string) {
+	const [entry] = await t
+		.insert(wall)
+		.values({
+			user: id,
+			type: body.type,
+			action: body.action
+		}).returning({
+			id: wall.id
+		});
 
+	wallId = entry.id;
+
+	if (body.artists) {
+		await t.insert(wallArtists).values(
+			body.artists.map((artist, i) => ({
+				wall: wallId,
+				artist,
+				index: i
+			}))
+		);
+	}
+
+	if (body.albums) {
+		await t.insert(wallAlbums).values(
+			body.albums.map((album, i) => ({
+				wall: wallId,
+				album,
+				index: i
+			}))
+		);
+	}
+
+	if (body.songs) {
+		await t.insert(wallSongs).values(
+			body.songs.map((song, i) => ({
+				wall: wallId,
+				song,
+				index: i
+			}))
+		);
+	}
+
+	if (body.users) {
+		await t.insert(wallUsers).values(
+			body.users.map((user, i) => ({
+				wall: wallId,
+				user,
+				index: i
+			}))
+		);
+	}
+
+	if (body.comments) {
+		await t.insert(wallComments).values(
+			body.comments.map((comment, i) => ({
+				wall: wallId,
+				comment,
+				index: i
+			}))
+		);
+	}
+
+	return entry;
 }
 
 wallRoute.post('/', async (c) => {
@@ -84,80 +146,12 @@ wallRoute.post('/', async (c) => {
 			return c.json({ error: 'invalid token' }, 401);
 		}
 
-		const {
-			songs,
-			artists,
-			albums,
-			users,
-			comments,
-			type,
-			action,
-		} = await c.req.json();
+		const body = await c.req.json();
 
 		let wallId = '';
 
 		await c.get('db').transaction(async (t) => {
-			const [entry] = await t
-				.insert(wall)
-				.values({
-					user: id,
-					type,
-					action
-				}).returning({
-					id: wall.id
-				});
-
-			wallId = entry.id;
-
-			if (artists.length > 0) {
-				await t.insert(wallArtists).values(
-					(artists as string[]).map((artist, i) => ({
-						wall: wallId,
-						artist,
-						index: i
-					}))
-				);
-			}
-
-			if (albums.length > 0) {
-				await t.insert(wallAlbums).values(
-					(albums as string[]).map((album, i) => ({
-						wall: wallId,
-						album,
-						index: i
-					}))
-				);
-			}
-
-			if (songs.length > 0) {
-				await t.insert(wallSongs).values(
-					(songs as string[]).map((song, i) => ({
-						wall: wallId,
-						song,
-						index: i
-					}))
-				);
-			}
-
-			if (users.length > 0) {
-				await t.insert(wallUsers).values(
-					(users as string[]).map((user, i) => ({
-						wall: wallId,
-						user,
-						index: i
-					}))
-				);
-			}
-
-			if (comments.length > 0) {
-				await t.insert(wallComments).values(
-					(comments as string[]).map((comment, i) => ({
-						wall: wallId,
-						comment,
-						index: i
-					}))
-				);
-			}
+			return createWallEntry(t, id, body, wallId);
 		});
 
 		return c.json({
