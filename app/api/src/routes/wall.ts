@@ -4,6 +4,7 @@ import { albums, artists, listens, songs, users, wall, wallAlbums, wallArtists, 
 import { desc, eq } from "drizzle-orm";
 import { getCookie } from "hono/cookie";
 import { jwtVerify } from "jose";
+import type { PgTransaction } from "drizzle-orm/pg-core";
 
 export const wallRoute = new Hono<Env>();
 
@@ -56,6 +57,20 @@ wallRoute.get('/:name', async (c) => {
 	return c.json(entries);
 });
 
+interface WallEntry {
+	type: string;
+	action: string;
+	artists?: string[];
+	albums?: string[];
+	songs?: string[];
+	users?: string[];
+	comments?: string[];
+}
+
+export function createWallEntry(t: any, id: string, body: WallEntry) {
+
+}
+
 wallRoute.post('/', async (c) => {
 	try {
 		const token = getCookie(c, 'citron');
@@ -82,13 +97,15 @@ wallRoute.post('/', async (c) => {
 		let wallId = '';
 
 		await c.get('db').transaction(async (t) => {
-			const [entry] = await t.insert(wall).values({
-				user: id,
-				type,
-				action
-			}).returning({
-				id: wall.id
-			});
+			const [entry] = await t
+				.insert(wall)
+				.values({
+					user: id,
+					type,
+					action
+				}).returning({
+					id: wall.id
+				});
 
 			wallId = entry.id;
 
