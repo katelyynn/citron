@@ -97,7 +97,7 @@ listenRoute.post('/', async (c) => {
 			const wall = await createWallEntry(t, id, {
 				type: 'song',
 				action: 'listen',
-				songs: [song]
+				songs: [song.id]
 			});
 
 			return { listen, wall };
@@ -105,6 +105,7 @@ listenRoute.post('/', async (c) => {
 
 		return c.json(result, 201);
 	} catch (e) {
-		return c.json({ error: (e as Error).message }, 500);
+		console.error(e);
+		return c.json({ message: 'sorry, something went wrong' }, 500);
 	}
 });
