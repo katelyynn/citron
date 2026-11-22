@@ -7,6 +7,55 @@ import { jwtVerify } from "jose";
 
 export const wallRoute = new Hono<Env>();
 
+wallRoute.get('/:name', async (c) => {
+	const name = c.req.param('name');
+
+	const user = await c.get('db').query.users.findFirst({
+		where: eq(users.name, name)
+	});
+
+	if (!user) {
+		return c.json({ error: 'user not found' }, 404);
+	}
+
+	const entries = await c.get('db').query.wall.findMany({
+		where: eq(wall.user, user.id),
+
+		with: {
+			artists: {
+				with: {
+					artist: true
+				}
+			},
+			albums: {
+				with: {
+					album: true
+				}
+			},
+			songs: {
+				with: {
+					song: true
+				}
+			},
+			users: {
+				with: {
+					user: true
+				}
+			},
+			comments: {
+				with: {
+					comment: true
+				}
+			}
+		},
+
+		orderBy: [desc(wall.created)],
+		limit: 20
+	});
+
+	return c.json(entries);
+});
+
 wallRoute.post('/', async (c) => {
 	try {
 		const token = getCookie(c, 'citron');
