@@ -77,22 +77,27 @@ export const listenRelations = relations(listens, ({ one }) => ({
 }));
 
 export const userRelations = relations(users, ({ many }) => ({
-	listens: many(listens)
+	listens: many(listens),
+	wallPosts: many(wall),
+	wallAppearances: many(wallUsers)
 }));
 
 export const artistRelations = relations(artists, ({ many }) => ({
 	albums: many(albums),
-	songs: many(songs)
+	songs: many(songs),
+	wallPosts: many(wallArtists)
 }));
 
 export const albumRelations = relations(albums, ({ one, many }) => ({
 	artist: one(artists, { fields: [albums.artist], references: [artists.id] }),
-	songs: many(songs)
+	songs: many(songs),
+	wallPosts: many(wallAlbums)
 }));
 
-export const songRelations = relations(songs, ({ one }) => ({
+export const songRelations = relations(songs, ({ one, many }) => ({
 	artist: one(artists, { fields: [songs.artist], references: [artists.id] }),
-	album: one(albums, { fields: [songs.album], references: [albums.id] })
+	album: one(albums, { fields: [songs.album], references: [albums.id] }),
+	wallPosts: many(wallSongs)
 }));
 
 //
@@ -109,6 +114,10 @@ export const comments = pgTable('comments', {
 
 	created: timestamp('created').notNull().defaultNow()
 });
+
+export const commentRelations = relations(comments, ({ many }) => ({
+	wallPosts: many(wallComments)
+}));
 
 // TODO: look over this again soon
 export const wall = pgTable('wall', {
@@ -151,14 +160,14 @@ export const wallAlbums = pgTable('wallAlbums', {
 }, (table) => [
 	primaryKey({ columns: [table.wall, table.album] })
 ]);
-export const wallAlbumRelations = relations(wallArtists, ({ one }) => ({
+export const wallAlbumRelations = relations(wallAlbums, ({ one }) => ({
 	wall: one(wall, {
-		fields: [wallArtists.wall],
+		fields: [wallAlbums.wall],
 		references: [wall.id]
 	}),
-	artist: one(artists, {
-		fields: [wallArtists.artist],
-		references: [artists.id]
+	album: one(albums, {
+		fields: [wallAlbums.album],
+		references: [albums.id]
 	})
 }));
 
@@ -170,6 +179,16 @@ export const wallSongs = pgTable('wallSongs', {
 }, (table) => [
 	primaryKey({ columns: [table.wall, table.song] })
 ]);
+export const wallSongRelations = relations(wallSongs, ({ one }) => ({
+	wall: one(wall, {
+		fields: [wallSongs.wall],
+		references: [wall.id]
+	}),
+	song: one(songs, {
+		fields: [wallSongs.song],
+		references: [songs.id]
+	})
+}));
 
 export const wallUsers = pgTable('wallUsers', {
 	wall: uuid('wall').notNull().references(() => wall.id, { onDelete: 'cascade' }),
@@ -179,6 +198,16 @@ export const wallUsers = pgTable('wallUsers', {
 }, (table) => [
 	primaryKey({ columns: [table.wall, table.user] })
 ]);
+export const wallUserRelations = relations(wallUsers, ({ one }) => ({
+	wall: one(wall, {
+		fields: [wallUsers.wall],
+		references: [wall.id]
+	}),
+	user: one(users, {
+		fields: [wallUsers.user],
+		references: [users.id]
+	})
+}));
 
 export const wallComments = pgTable('wallComments', {
 	wall: uuid('wall').notNull().references(() => wall.id, { onDelete: 'cascade' }),
@@ -188,6 +217,16 @@ export const wallComments = pgTable('wallComments', {
 }, (table) => [
 	primaryKey({ columns: [table.wall, table.comment] })
 ]);
+export const wallCommentRelations = relations(wallComments, ({ one }) => ({
+	wall: one(wall, {
+		fields: [wallComments.wall],
+		references: [wall.id]
+	}),
+	comment: one(comments, {
+		fields: [wallComments.comment],
+		references: [comments.id]
+	})
+}));
 
 export const wallRelations = relations(wall, ({ one, many }) => ({
 	user: one(users, {
