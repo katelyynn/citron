@@ -92,7 +92,7 @@ listenRoute.post('/', async (c) => {
 				rawArtist: artistName,
 				rawAlbum: albumName,
 				rawAlbumArtist: albumArtistName
-			});
+			}).returning();
 
 			const wall = await createWallEntry(t, id, {
 				type: 'song',
