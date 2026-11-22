@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm";
-import { integer, pgTable, text, timestamp, uuid, type AnyPgColumn } from "drizzle-orm/pg-core";
+import { integer, pgTable, primaryKey, text, timestamp, uuid, type AnyPgColumn } from "drizzle-orm/pg-core";
 
 export const users = pgTable('users', {
 	id: uuid('id').primaryKey().defaultRandom(),
@@ -118,14 +118,86 @@ export const wall = pgTable('wall', {
 	// what is being described?
 	// e.g. is it a list of artists, songs, users
 	type: text('type').notNull(),
-	// the lists themselves
-	artists: uuid('artists').array(),
-	albums: uuid('albums').array(),
-	songs: uuid('songs').array(),
-	users: uuid('users').array(),
-	comments: uuid('comments').array(),
 	// the action being performed on the list
 	action: text('action').notNull(),
 
 	created: timestamp('created').notNull().defaultNow()
 });
+
+export const wallArtists = pgTable('wallArtists', {
+	wall: uuid('wall').notNull().references(() => wall.id, { onDelete: 'cascade' }),
+
+	artist: uuid('artist').notNull().references(() => artists.id),
+	index: integer('index').notNull().default(0)
+}, (table) => [
+	primaryKey({ columns: [table.wall, table.artist] })
+]);
+export const wallArtistRelations = relations(wallArtists, ({ one }) => ({
+	wall: one(wall, {
+		fields: [wallArtists.wall],
+		references: [wall.id]
+	}),
+	artist: one(artists, {
+		fields: [wallArtists.artist],
+		references: [artists.id]
+	})
+}));
+
+export const wallAlbums = pgTable('wallAlbums', {
+	wall: uuid('wall').notNull().references(() => wall.id, { onDelete: 'cascade' }),
+
+	album: uuid('album').notNull().references(() => albums.id),
+	index: integer('index').notNull().default(0)
+}, (table) => [
+	primaryKey({ columns: [table.wall, table.album] })
+]);
+export const wallAlbumRelations = relations(wallArtists, ({ one }) => ({
+	wall: one(wall, {
+		fields: [wallArtists.wall],
+		references: [wall.id]
+	}),
+	artist: one(artists, {
+		fields: [wallArtists.artist],
+		references: [artists.id]
+	})
+}));
+
+export const wallSongs = pgTable('wallSongs', {
+	wall: uuid('wall').notNull().references(() => wall.id, { onDelete: 'cascade' }),
+
+	song: uuid('song').notNull().references(() => songs.id),
+	index: integer('index').notNull().default(0)
+}, (table) => [
+	primaryKey({ columns: [table.wall, table.song] })
+]);
+
+export const wallUsers = pgTable('wallUsers', {
+	wall: uuid('wall').notNull().references(() => wall.id, { onDelete: 'cascade' }),
+
+	user: uuid('user').notNull().references(() => users.id),
+	index: integer('index').notNull().default(0)
+}, (table) => [
+	primaryKey({ columns: [table.wall, table.user] })
+]);
+
+export const wallComments = pgTable('wallComments', {
+	wall: uuid('wall').notNull().references(() => wall.id, { onDelete: 'cascade' }),
+
+	comment: uuid('comment').notNull().references(() => comments.id),
+	index: integer('index').notNull().default(0)
+}, (table) => [
+	primaryKey({ columns: [table.wall, table.comment] })
+]);
+
+export const wallRelations = relations(wall, ({ one, many }) => ({
+	user: one(users, {
+		fields: [wall.user],
+		references: [users.id]
+	}),
+
+	artists: many(wallArtists),
+	albums: many(wallAlbums),
+	songs: many(wallSongs),
+	users: many(wallUsers),
+	comments: many(wallComments)
+}));
