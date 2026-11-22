@@ -2,7 +2,7 @@ import 'dotenv/config';
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import { dbMiddleware } from './middleware/db.ts'
-import userRoute from './routes/user.ts';
+import { userRoute } from './routes/user.ts';
 import { cors } from 'hono/cors';
 import authRoute from './routes/auth.ts';
 import { listenRoute } from './routes/listen.ts';
