@@ -110,7 +110,8 @@ authRoute.post('/login', async (c) => {
 			}
 		});
 	} catch (e) {
-		return c.json({ error: (e as Error).message }, 500);
+		console.error(e);
+		return c.json({ message: 'sorry, something went wrong' }, 500);
 	}
 });
 
