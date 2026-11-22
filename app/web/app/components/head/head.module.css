@@ -11,6 +11,8 @@
 	color: oklch(var(--c1));
 
 	margin-bottom: 10px;
+
+	user-select: none;
 }
 
 .icon {
