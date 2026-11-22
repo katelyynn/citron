@@ -30,15 +30,18 @@ wallRoute.post('/', async (c) => {
 			action,
 		} = await c.req.json();
 
-		const wallId = crypto.randomUUID();
+		let wallId = '';
 
 		await c.get('db').transaction(async (t) => {
-			await t.insert(wall).values({
-				id: wallId,
+			const [entry] = await t.insert(wall).values({
 				user: id,
 				type,
 				action
+			}).returning({
+				id: wall.id
 			});
+
+			wallId = entry.id;
 
 			if (artists.length > 0) {
 				await t.insert(wallArtists).values(
