@@ -19,7 +19,7 @@ wallRoute.get('/:name', async (c) => {
 		return c.json({ error: 'user not found' }, 404);
 	}
 
-	const entries = await c.get('db').query.wall.findMany({
+	const entries = (await c.get('db').query.wall.findMany({
 		where: eq(wall.user, user.id),
 
 		with: {
@@ -52,7 +52,21 @@ wallRoute.get('/:name', async (c) => {
 
 		orderBy: [desc(wall.created)],
 		limit: 20
-	});
+	})).map(({
+		artists,
+		albums,
+		songs,
+		users,
+		comments,
+		...entry
+	}) => ({
+		...entry,
+		artists: artists.map(({ artist }) => artist),
+		albums: albums.map(({ album }) => album),
+		songs: songs.map(({ song }) => song),
+		users: users.map(({ user }) => user),
+		comments: comments.map(({ comment }) => comment),
+	}));
 
 	return c.json(entries);
 });
