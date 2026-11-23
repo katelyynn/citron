@@ -1,9 +1,12 @@
-import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type ForwardRefExoticComponent, type ReactNode, type RefAttributes } from 'react';
 import styles from './tabs.module.css';
 import { Link } from 'react-router';
+import { Icon } from '../icon/icon';
+import type { IconProps } from '@mingcute/react';
 
 export interface Tab {
 	href: string;
+	icon?: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>[];
 	children: ReactNode;
 }
 
@@ -51,6 +54,15 @@ export function Tabs({
 							styles[`${style}-item`],
 							active && styles.active
 						].join(' ')} to={starting + tab.href} ref={active ? selected : null}>
+							{tab.icon && (
+								<>
+									{(!active || tab.icon.length == 1) ? (
+										<Icon name={tab.icon[0]} className={styles.icon} />
+									) : (
+										<Icon name={tab.icon[1]} className={styles.icon} />
+									)}
+								</>
+							)}
 							{tab.children}
 						</Link>
 					);

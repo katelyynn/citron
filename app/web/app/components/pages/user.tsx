@@ -6,7 +6,9 @@ import { Tabs, type Tab } from "../tabs/tabs";
 import { useLocation } from "react-router";
 import { DateTime } from "luxon";
 import { SectionHead } from "../head/head";
-import { Book6Regular } from "@mingcute/react/core-regular";
+import { Book5Regular, Book6Regular, Chat1Regular, DirectoryRegular, Home4Regular } from "@mingcute/react/core-regular";
+import { Icon } from "../icon/icon";
+import { Book5Filled, Chat1Filled, DirectoryFilled, Home4Filled } from "@mingcute/react/core-filled";
 
 export async function loadUser(name: string, request: Request): Promise<User> {
 	const res = await fetch(new URL(`/api/user/${name}`, request.url));
@@ -32,14 +34,17 @@ export function UserPage({
 	const tabs: Tab[] = [
 		{
 			href: '/',
+			icon: [Home4Regular, Home4Filled],
 			children: 'Home'
 		},
 		{
 			href: '/wall',
+			icon: [DirectoryRegular, DirectoryFilled],
 			children: 'Wall'
 		},
 		{
 			href: '/library',
+			icon: [Book5Regular, Book5Filled],
 			children: 'Library'
 		},
 		{
@@ -48,6 +53,7 @@ export function UserPage({
 		},
 		{
 			href: '/comments',
+			icon: [Chat1Regular, Chat1Filled],
 			children: 'Comments'
 		},
 		{
