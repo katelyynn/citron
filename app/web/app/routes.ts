@@ -5,6 +5,7 @@ export default [
 	route('user/:name', 'routes/user/layout.tsx', [
 		index('routes/user/_index.tsx'),
 		route('wall', 'routes/user/wall.tsx'),
+		route('comments', 'routes/user/comments.tsx'),
 
 		route('library', 'routes/user/library/layout.tsx', [
 			index('routes/user/library/listens.tsx'),

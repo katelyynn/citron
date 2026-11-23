@@ -1,4 +1,5 @@
 export interface WallEntry {
+	id: string;
 	type: string;
 	action: string;
 	artists?: string[];
