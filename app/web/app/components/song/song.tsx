@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import styles from './song.module.css';
 import { Icon } from '../icon/icon';
 import { DiscAlbumFilled } from '@mingcute/react/core-filled';
+import { DateTime } from 'luxon';
 
 interface SongRowProps {
 	index?: number;
@@ -16,6 +17,7 @@ interface SongRowProps {
 	albumArtist?: string;
 	duration?: number;
 	active?: boolean;
+	created: string;
 }
 
 export function SongRow({
@@ -30,12 +32,14 @@ export function SongRow({
 	albumArtistId,
 	albumArtist,
 	duration,
-	active
+	active,
+	created
 }: SongRowProps) {
 	return (
 		<tr className={[
 			styles.song,
-			active && styles.active
+			active && styles.active,
+			art && styles.withArt
 		].join(' ')}>
 			{index && (
 				<td className={styles.index}>
@@ -73,6 +77,11 @@ export function SongRow({
 			{duration && (
 				<td className={styles.duration}>
 					{duration}
+				</td>
+			)}
+			{!index && (
+				<td className={styles.time}>
+					{DateTime.fromISO(created).toRelative()}
 				</td>
 			)}
 		</tr>

@@ -58,11 +58,13 @@ export default function App({ loaderData }: Route.ServerComponentProps) {
 						{listens.map((listen, i) => (
 							<SongRow
 								id={listen.song.id}
+								art
 								name={listen.song.name}
 								artistId={listen.song.artist.id}
 								artist={listen.song.artist.name}
 								albumId={listen.song.album?.id}
 								album={listen.song.album?.name}
+								created={listen.created}
 							/>
 						))}
 					</SongList>
