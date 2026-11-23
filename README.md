@@ -17,8 +17,10 @@ The project is split into two separate apps, the API and the website. The API is
 ### API
 
 .env:
-```
+```.env
 POSTGRES_PASSWORD=
 DATABASE_URL=
 JWT_SECRET=
 ```
+
+Use `pnpm docker:up` and `pnpm db:migrate` to manage database nonsense, along with obviously `pnpm dev` to start the API.
