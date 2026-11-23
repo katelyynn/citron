@@ -253,3 +253,24 @@ export const wallRelations = relations(wall, ({ one, many }) => ({
 	users: many(wallUsers),
 	comments: many(wallComments)
 }));
+
+
+export const settings = pgTable('settings', {
+	user: uuid('user').notNull().primaryKey().references(() => users.id),
+
+	language: text('language').default('en-GB'),
+	theme: text('theme').default('ash'),
+
+	presence: text('presence').default('everyone'),
+	wall: text('wall').default('everyone'),
+	recents: text('recents').default('everyone'),
+	library: text('library').default('everyone'),
+
+	readComments: text('readComments').default('everyone'),
+	writeComments: text('writeComments').default('everyone'),
+
+	message: text('message').default('everyone'),
+	friend: text('friend').default('everyone'),
+
+	pronouns: text('pronouns').default('everyone')
+});
