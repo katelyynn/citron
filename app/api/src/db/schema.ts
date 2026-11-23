@@ -79,7 +79,8 @@ export const listenRelations = relations(listens, ({ one }) => ({
 export const userRelations = relations(users, ({ many }) => ({
 	listens: many(listens),
 	wallPosts: many(wall),
-	wallAppearances: many(wallUsers)
+	wallAppearances: many(wallUsers),
+	comments: many(comments)
 }));
 
 export const artistRelations = relations(artists, ({ many }) => ({
@@ -109,13 +110,25 @@ export const comments = pgTable('comments', {
 	content: text('content').notNull(),
 
 	// targetType makes this js easier
-	targetType: text('targetType').notNull(),
-	targetId: uuid('targetId').notNull(),
+	type: text('type').notNull(),
+	target: uuid('target').notNull(),
 
 	created: timestamp('created').notNull().defaultNow()
 });
 
-export const commentRelations = relations(comments, ({ many }) => ({
+export const commentRelations = relations(comments, ({ one, many }) => ({
+	user: one(users, {
+		fields: [comments.user],
+		references: [users.id]
+	}),
+	replies: many(comments, {
+		relationName: 'commentReplies'
+	}),
+	parent: one(comments, {
+		fields: [comments.parent],
+		references: [comments.id],
+		relationName: 'commentReplies'
+	}),
 	wallPosts: many(wallComments)
 }));
 

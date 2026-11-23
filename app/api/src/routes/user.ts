@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import type { Env } from "../middleware/db.ts";
-import { albums, artists, listens, songs, users } from "../db/schema.ts";
-import { desc, eq } from "drizzle-orm";
+import { albums, artists, comments, listens, songs, users } from "../db/schema.ts";
+import { and, desc, eq } from "drizzle-orm";
 
 export const userRoute = new Hono<Env>();
 
@@ -78,4 +78,36 @@ userRoute.get('/:name/recent', async (c) => {
 	}
 
 	return c.json(user.listens);
+});
+
+userRoute.get('/:name/comments', async (c) => {
+	const name = c.req.param('name');
+
+	const user = await c.get('db').query.users.findFirst({
+		where: eq(users.name, name)
+	});
+
+	if (!user) {
+		return c.json({ error: 'user not found' }, 404);
+	}
+
+	const result = await c.get('db').query.comments.findMany({
+		where: and(
+			eq(comments.type, 'user'),
+			eq(comments.target, user.id)
+		),
+		with: {
+			user: true,
+			parent: true,
+			replies: {
+				with: {
+					user: true
+				}
+			}
+		},
+		limit: 20,
+		orderBy: [desc(comments.created)]
+	});
+
+	return c.json(result, 200);
 });
