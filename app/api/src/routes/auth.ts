@@ -10,7 +10,11 @@ const authRoute = new Hono<Env>();
 
 authRoute.post('/register', async (c) => {
 	try {
-		const { name, email, password } = await c.req.json();
+		const { name, email, password, key } = await c.req.json();
+
+		if (!key || key != process.env.ACCOUNT_KEY) {
+			return c.json({ error: 'registration is restricted, sorry ;-;' }, 400);
+		}
 
 		if (!name || !email || !password) {
 			return c.json({ error: 'missing required fields: name, email, password' }, 400);

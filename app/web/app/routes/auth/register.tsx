@@ -15,6 +15,7 @@ export default function App() {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [key, setKey] = useState('');
 	const [error, setError] = useState('');
 
 	const navigate = useNavigate();
@@ -29,7 +30,8 @@ export default function App() {
 				body: JSON.stringify({
 					name,
 					email,
-					password
+					password,
+					key
 				})
 			});
 
@@ -65,6 +67,9 @@ export default function App() {
 					</FormInner>
 					<FormInner label='Password'>
 						<Input icon={<Icon name={LockRegular} />} type='password' value={password} onChange={setPassword} />
+					</FormInner>
+					<FormInner label='Access code'>
+						<Input icon={<Icon name={LockRegular} />} type='text' value={key} onChange={setKey} />
 					</FormInner>
 					<FormFooter>
 						<Button primary onClick={register}>
