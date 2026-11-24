@@ -21,6 +21,7 @@ The project is split into two separate apps, the API and the website. The API is
 POSTGRES_PASSWORD=
 DATABASE_URL=
 JWT_SECRET=
+ACCOUNT_KEY= // restricts account creation without this code
 ```
 
 Use `pnpm docker:up` and `pnpm db:migrate` to manage database nonsense, along with obviously `pnpm dev` to start the API.
